@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847787a79031d5d4393d489223667b05, type: 3}
+  m_Name: WeaponList
+  m_EditorClassIdentifier: 
+  weaponList:
+  - m_name: Ak47
+    m_weaponType: 0
+    m_fireMode: 0
+    m_damage: 45
+    m_range: 100
+    m_accuracy: 100
+    m_accuracyDropPerShot: 10
+    m_accuracyRecoverPerSecond: 20
+    m_accuracyRecoverDelay: 0.25
+    m_recoilRecovery: 10
+    m_fireRate: 480
+    m_hasChamber: 1
+    m_totalAmmo: 60
+    m_clipAmmo: 30
+    m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
+    m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    m_bulletShell: {fileID: 0}
+    m_bulletShellSound: {fileID: 0}
+    m_reloadAmmoLeftSound: {fileID: 8300000, guid: f7ce534a0633b9847910ba117e2245d1,
+      type: 3}
+    m_reloadOutOfAmmoSound: {fileID: 8300000, guid: 5b907074256e36d41b92e89fb0790633,
+      type: 3}
+    m_holsterSound: {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
+    m_drawSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
+  - m_name: Glock
+    m_weaponType: 1
+    m_fireMode: 1
+    m_damage: 20
+    m_range: 100
+    m_accuracy: 100
+    m_accuracyDropPerShot: 5
+    m_accuracyRecoverPerSecond: 1
+    m_accuracyRecoverDelay: 0.2
+    m_recoilRecovery: 10
+    m_fireRate: 540
+    m_hasChamber: 1
+    m_totalAmmo: 18
+    m_clipAmmo: 9
+    m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
+    m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    m_bulletShell: {fileID: 0}
+    m_bulletShellSound: {fileID: 0}
+    m_reloadAmmoLeftSound: {fileID: 8300000, guid: b0d51244fd32fc647960320540b32f66,
+      type: 3}
+    m_reloadOutOfAmmoSound: {fileID: 8300000, guid: fee3a21f251a4914cabce25b13e7d2a8,
+      type: 3}
+    m_holsterSound: {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
+    m_drawSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
