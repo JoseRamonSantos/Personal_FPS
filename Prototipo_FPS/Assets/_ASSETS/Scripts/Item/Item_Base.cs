@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_Base : MonoBehaviour
+public abstract class Item_Base : MonoBehaviour
 {
 
 
@@ -10,21 +10,13 @@ public class Item_Base : MonoBehaviour
     {
         Char_Base target;
 
-        if(other.TryGetComponent<Char_Base>(out target))
+        if(other.TryGetComponent(out target))
         {
+            Debug.Log(target.gameObject.name + " picked item (" + gameObject.name + ")");
             TakeItem(target);
+            Destroy(gameObject);
         }
     }
 
-    private void TakeItem(Char_Base _char)
-    {
-        Debug.Log(_char.gameObject.name + " picked item (" + gameObject.name + ")");
-        Effect(_char);
-        Destroy(gameObject);
-    }
-
-    protected virtual void Effect(Char_Base _char)
-    {
-
-    }
+    protected abstract void TakeItem(Char_Base _char);
 }

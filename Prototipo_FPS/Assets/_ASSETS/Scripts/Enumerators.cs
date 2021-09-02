@@ -14,3 +14,16 @@ public enum E_WEAPON_STATE
     DRAWING
 }
 
+public enum E_ITEM_TYPE
+{
+    PRIMARY_WEAPON,
+    SECONDARY_WEAPON
+}
+
+public enum E_HITBOX_PART
+{
+    HEAD,
+    BODY,
+    LIMB
+}
+

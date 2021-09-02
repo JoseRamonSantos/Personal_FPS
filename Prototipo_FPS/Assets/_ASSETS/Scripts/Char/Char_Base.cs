@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Char_Base : MonoBehaviour
 {
+    #region VARIABLES
     [SerializeField]
     protected GameObject m_bulletImpact = null;
     [SerializeField]
@@ -12,19 +13,19 @@ public class Char_Base : MonoBehaviour
     protected int m_crntHP = 0;
 
     [SerializeField]
-    private Transform m_targetPoint = null;
-
-    [SerializeField]
     protected bool m_invulnerable = false;
 
     protected bool m_isDead = false;
+    #endregion
 
+    #region PROPERTIES
     public GameObject BulletImpact { get => m_bulletImpact; }
     public int MaxHP { get => m_maxHP; }
     public int CrntHP { get => m_crntHP; set => m_crntHP = Mathf.Clamp(value, 0, MaxHP); }
-    public Transform TargetPoint { get => m_targetPoint; }
+    #endregion
 
 
+    #region METHODS
     protected virtual void Start()
     {
         if (CrntHP == 0)
@@ -35,7 +36,11 @@ public class Char_Base : MonoBehaviour
 
     public virtual void ReceiveDamage(int _damage)
     {
-        if (m_isDead || m_invulnerable) { return; }
+        if (m_isDead) { return; }
+
+        Debug.Log(transform.name + " has received " + _damage + " damage. (Invulnerability =" + m_invulnerable + ")");
+
+        if (m_invulnerable) { return; }
 
         CrntHP -= _damage;
 
@@ -54,5 +59,5 @@ public class Char_Base : MonoBehaviour
     {
         m_isDead = true;
     }
-
+    #endregion
 }

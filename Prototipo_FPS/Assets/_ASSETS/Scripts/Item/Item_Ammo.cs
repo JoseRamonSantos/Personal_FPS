@@ -6,7 +6,8 @@ public class Item_Ammo : Item_Base
 {
     private int m_ammoAmount = 20;
 
-    protected override void Effect(Char_Base _char)
+
+    protected override void TakeItem(Char_Base _char)
     {
         if (_char.GetComponent<Char_Player>())
         {

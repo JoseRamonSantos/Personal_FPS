@@ -4916,7 +4916,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 5
       minScalar: 0.75
       maxCurve:
         serializedVersion: 2
@@ -5794,7 +5794,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -6108,8 +6108,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.60784316}
-        key1: {r: 0.6132076, g: 0.4666141, b: 0.24586153, a: 0.39215687}
+        key0: {r: 1, g: 1, b: 1, a: 0.78431374}
+        key1: {r: 0.6132076, g: 0.4666141, b: 0.24586153, a: 0}
         key2: {r: 1, g: 1, b: 1, a: 0.39215687}
         key3: {r: 0, g: 0, b: 0, a: 0.39215687}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6117,14 +6117,14 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 13107
+        ctime1: 5012
         ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 26214
+        atime0: 13878
         atime1: 65535
         atime2: 65535
         atime3: 65535
@@ -8549,7 +8549,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 7725837999799494641}
     randomDistribution: 0
@@ -14383,7 +14383,7 @@ GameObject:
   - component: {fileID: 8996946788839235918}
   - component: {fileID: 8228258048696752059}
   m_Layer: 0
-  m_Name: Impact_Surface
+  m_Name: bI_Surface_Generic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14416,7 +14416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5743c3f049f6ddd4ea1537a436d7006b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_time: 3
+  m_time: 6
 --- !u!114 &8996946788839235918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14429,7 +14429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88db480f51666964ba5de48676a95d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_waitFrames: 1
+  m_waitTime: 0
   m_audioList:
   - {fileID: 8300000, guid: fceb333e433c97e4497267e3c3a508c3, type: 3}
   - {fileID: 8300000, guid: f49b461f95e0def45b1ad2a5a350e574, type: 3}

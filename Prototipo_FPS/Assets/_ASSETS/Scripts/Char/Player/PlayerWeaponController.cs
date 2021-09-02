@@ -14,9 +14,9 @@ public class PlayerWeaponController : MonoBehaviour
     private Camera m_weaponCamera = null;
 
     [SerializeField]
-    private Weapon_Player[] m_weaponsList = null;
+    private Item_Weapon_Player[] m_weaponsList = null;
     [SerializeField]
-    private Weapon_Player m_crntWeapon = null;
+    private Item_Weapon_Player m_crntWeapon = null;
 
     [SerializeField]
     private int m_iCrntWeapon;
@@ -31,7 +31,7 @@ public class PlayerWeaponController : MonoBehaviour
     public Camera MainCamera { get => m_mainCamera; }
     public Camera WeaponCamera { get => m_weaponCamera; }
 
-    public Weapon_Player CrntWeapon { get => m_crntWeapon; }
+    public Item_Weapon_Player CrntWeapon { get => m_crntWeapon; }
 
 
 
@@ -201,7 +201,7 @@ public class PlayerWeaponController : MonoBehaviour
         UpdateAmmoHUD();
     }
 
-    private void NewWeapon(Weapon_Player _newWeapon)
+    private void NewWeapon(Item_Weapon_Player _newWeapon)
     {
         m_crntWeapon = _newWeapon;
     }
