@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera m_cmpMainCamera = null;
     private CharacterController m_cmpCC = null;
     private PlayerWeaponController m_cmpPWeaponController = null;
-    
+
     [Header("Movement Settings")]
     //public float movementSpeed = 3f;
 
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     private void PerformMovement()
     {
         Vector3 velocidadTotal = CameraDirection(m_movementDirection);
-        
+
         velocidadTotal.y = m_ySpeed;
 
         m_cmpCC.Move(velocidadTotal * m_crntMaxSpeed * Time.deltaTime);
@@ -117,12 +117,20 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(m_movementDirection.magnitude) < 0.05f && m_isMoving)
         {
             m_isMoving = false;
-            m_cmpPWeaponController.SetIsMoving(m_isMoving);
+
+            if (m_cmpPWeaponController && m_cmpPWeaponController.isActiveAndEnabled)
+            {
+                m_cmpPWeaponController.SetIsMoving(m_isMoving);
+            }
         }
         else if (Mathf.Abs(m_movementDirection.magnitude) >= 0.05f && !m_isMoving)
         {
             m_isMoving = true;
-            m_cmpPWeaponController.SetIsMoving(m_isMoving);
+
+            if (m_cmpPWeaponController && m_cmpPWeaponController.isActiveAndEnabled)
+            {
+                m_cmpPWeaponController.SetIsMoving(m_isMoving);
+            }
         }
     }
 
