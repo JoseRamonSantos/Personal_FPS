@@ -62,7 +62,8 @@ MonoBehaviour:
     type: 3}
   m_content: {fileID: 2676714656812534955}
   m_scroll: {fileID: 2676714657072217448}
-  m_maxTimeToHide: 4
+  m_cMessagesList: []
+  m_maxTimeToHide: 5
 --- !u!1 &2676714655516218123
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,11 +498,11 @@ RectTransform:
   m_Father: {fileID: 2676714655169585481}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 500, y: 200}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 300}
+  m_SizeDelta: {x: 500, y: 300}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &2676714657072217452
 CanvasRenderer:
   m_ObjectHideFlags: 0

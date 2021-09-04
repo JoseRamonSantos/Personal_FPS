@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class Item_Weapon_Base : Item_Base
 {
+    protected Char_Base _owner = null;
+
     [SerializeField]
     protected int m_fireLayer = 0;
 
@@ -105,6 +107,8 @@ public class Item_Weapon_Base : Item_Base
         {
             CrntAmmo = ClipAmmo;
         }
+
+        _owner = GetComponentInParent<Char_Base>();
     }
 
 
@@ -168,7 +172,7 @@ public class Item_Weapon_Base : Item_Base
     }
 
     /*DAMAGE*/
-    protected int CalculateDamage(Char_Base _char, E_HITBOX_PART _hPart)
+    protected int CalculateDamage(Char_Base _target, E_HITBOX_PART _hPart)
     {
         int damage = m_data.m_damage;
 
@@ -187,13 +191,19 @@ public class Item_Weapon_Base : Item_Base
                 break;
         }
 
-        float charDistance = (_char.transform.position - transform.position).magnitude;
+        float distance = (_target.transform.position - transform.position).magnitude;
 
-        float cPoint = Mathf.Clamp(charDistance / m_data.m_maxRange, 0, 1);
+        float cPoint = Mathf.Clamp(distance / m_data.m_maxRange, 0, 1);
 
         float damageReducionPercent = m_data.m_distanceDamageReduction.Evaluate(cPoint);
 
         damage = Mathf.RoundToInt(damage * damageReducionPercent);
+
+        //CONSOLE MESSAGE
+        if(_owner is Char_Player)
+        {
+            ConsoleManager.Instance.AddPlayerCauseDamageMessage(_owner, _target, damage, _hPart, distance);
+        }
 
         /*Debug.Log("------------------------------------");
         Debug.Log("Distance = " + charDistance);

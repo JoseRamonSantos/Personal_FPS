@@ -2,21 +2,43 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConsoleMessage : MonoBehaviour
 {
     private TextMeshProUGUI m_cmpTMPro = null;
 
+    private Image m_cmpImage = null;
 
+    private bool m_isActivated = true;
 
     private void Awake()
     {
         m_cmpTMPro = GetComponentInChildren<TextMeshProUGUI>();
+        m_cmpImage = GetComponentInChildren<Image>();
+    }
+
+    public void Predeactivate()
+    {
+        if (!m_isActivated) { return; }
+
+        Color newColor = m_cmpImage.color;
+        newColor.a = 0.75f;
+
+        m_cmpImage.color = newColor;
+
     }
 
     public void Deactivate()
     {
+        if (!m_isActivated) { return; }
 
+        Color newColor = m_cmpImage.color;
+        newColor.a = 0.5f;
+
+        m_cmpImage.color = newColor;
+
+        m_isActivated = false;
     }
 
     public void ResetText()

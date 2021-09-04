@@ -15,7 +15,7 @@ public class ConsoleManager : MonoBehaviour
 
     [Space]
     [SerializeField]
-    private List<ConsoleMessage> m_cMessageList = new List<ConsoleMessage>();
+    private List<ConsoleMessage> m_cMessagesList = new List<ConsoleMessage>();
 
     [Space]
 
@@ -38,21 +38,32 @@ public class ConsoleManager : MonoBehaviour
         //DEBUG
         if (Input.GetKeyDown(KeyCode.C))
         {
-            AddTextMessage();
+            AddTestMessage();
         }
     }
 
-    public void AddTextMessage()
+    public void AddTestMessage()
     {
-        ConsoleMessage cMessage;
-
-        cMessage = NewMessage();
+        ConsoleMessage cMessage = NewMessage();
 
         cMessage.ResetText();
         cMessage.AddText("This is a");
         cMessage.AddText("TEST", "red", true);
         cMessage.AddText("message", "red", true);
         cMessage.AddText("(id." + (Random.value * 10000).ToString("F0") + ")", "yellow", false, true);
+    }
+
+    public void AddPlayerCauseDamageMessage(Char_Base _sender, Char_Base _receiver, int damage, E_HITBOX_PART _hPart, float _distance)
+    {
+        ConsoleMessage cMessage = NewMessage();
+
+        cMessage.ResetText();
+        cMessage.AddText(_sender.transform.name.ToString(), "green", false, true);
+        cMessage.AddText(": damage given to");
+        cMessage.AddText(_receiver.transform.name.ToString(), "red".ToString(), false, true);
+        cMessage.AddText(":");
+        cMessage.AddText(damage.ToString(), "red", true);
+        cMessage.AddText("(" + _hPart + " - " + _distance.ToString("F1") + "m)");
     }
 
 
@@ -63,7 +74,12 @@ public class ConsoleManager : MonoBehaviour
         ConsoleMessage cMessage;
         cMessage = Instantiate(m_pfConsoleMessage, m_content.transform).GetComponentInChildren<ConsoleMessage>();
 
-        m_cMessageList.Add(cMessage);
+        if (m_cMessagesList.Count > 0)
+        {
+            m_cMessagesList[m_cMessagesList.Count - 1].Predeactivate();
+        }
+
+        m_cMessagesList.Add(cMessage);
 
         return cMessage;
     }
@@ -74,7 +90,7 @@ public class ConsoleManager : MonoBehaviour
         {
             m_crntTimeToHide -= Time.deltaTime;
 
-            if(m_crntTimeToHide <= 0)
+            if (m_crntTimeToHide <= 0)
             {
                 HideConsole();
             }
@@ -92,6 +108,11 @@ public class ConsoleManager : MonoBehaviour
     {
         m_scroll.gameObject.SetActive(false);
         m_consoleActivated = false;
+
+        for (int i = 0; i < m_cMessagesList.Count; i++)
+        {
+            m_cMessagesList[i].Deactivate();
+        }
     }
 
 }
