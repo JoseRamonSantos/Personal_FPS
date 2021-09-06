@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponList:
   - m_name: Ak47
-    m_weaponType: 0
-    m_fireMode: 0
+    m_itemType: 1
     m_damage: 60
+    m_bulletsPerShoot: 7
+    m_bulletsPerBurst: 3
     m_maxRange: 250
     m_distanceDamageReduction:
       serializedVersion: 2
@@ -64,9 +65,10 @@ MonoBehaviour:
     m_holsterSound: {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
     m_drawSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
   - m_name: Glock
-    m_weaponType: 1
-    m_fireMode: 1
+    m_itemType: 1
     m_damage: 30
+    m_bulletsPerShoot: 7
+    m_bulletsPerBurst: 3
     m_maxRange: 100
     m_distanceDamageReduction:
       serializedVersion: 2
@@ -100,6 +102,57 @@ MonoBehaviour:
     m_fireRate: 300
     m_hasChamber: 1
     m_totalAmmo: 45
+    m_clipAmmo: 9
+    m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
+    m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+    m_bulletShell: {fileID: 0}
+    m_bulletShellSound: {fileID: 0}
+    m_bulletTracer: {fileID: 5669693697026936338, guid: 9b131608504f81949bd89834f09e3499,
+      type: 3}
+    m_reloadAmmoLeftSound: {fileID: 8300000, guid: b0d51244fd32fc647960320540b32f66,
+      type: 3}
+    m_reloadOutOfAmmoSound: {fileID: 8300000, guid: fee3a21f251a4914cabce25b13e7d2a8,
+      type: 3}
+    m_holsterSound: {fileID: 8300000, guid: 33a4a9bf1a1dbca4cb379a1118c6b20d, type: 3}
+    m_drawSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
+  - m_name: M1014
+    m_itemType: 0
+    m_damage: 80
+    m_bulletsPerShoot: 7
+    m_bulletsPerBurst: 3
+    m_maxRange: 60
+    m_distanceDamageReduction:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_accuracy: 100
+    m_accuracyDropPerShot: 5
+    m_accuracyRecoverPerSecond: 50
+    m_accuracyRecoverDelay: 0.2
+    m_recoilRecovery: 0
+    m_fireRate: 300
+    m_hasChamber: 1
+    m_totalAmmo: 6
     m_clipAmmo: 9
     m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
     m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}

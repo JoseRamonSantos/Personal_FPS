@@ -1,27 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-
 
 [System.Serializable]
 public class WeaponItem
 {
-    public enum WeaponType
-    {
-        primerayWeapon,
-        secondaryWeapon
-    }
-
     [Space]
     public      string          m_name                      = "";
 
     [Space]
-    public      WeaponType      m_weaponType                = WeaponType.secondaryWeapon;
+    public      E_ITEM_TYPE      m_itemType                = E_ITEM_TYPE.SECONDARY_WEAPON;
 
     [Header("ATTRIBUTES")]
-    public      E_FIRE_MODE     m_fireMode                  = E_FIRE_MODE.FULL_AUTO;
     public      int             m_damage                    = 50;
     //public      float           m_forceToApply              = 20.0f;
+    public      int             m_bulletsPerShoot           = 7;
+    public      int             m_bulletsPerBurst           = 3;
     public      int             m_maxRange                  = 9999;
     public      AnimationCurve  m_distanceDamageReduction   = null;
     public      float           m_accuracy                  = 100;
@@ -48,5 +43,4 @@ public class WeaponItem
     [Space]
     public      AudioClip       m_holsterSound              = null;
     public      AudioClip       m_drawSound                 = null;
-
 }

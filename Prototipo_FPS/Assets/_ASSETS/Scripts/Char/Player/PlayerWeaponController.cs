@@ -7,6 +7,8 @@ public class PlayerWeaponController : MonoBehaviour
 {
     public static PlayerWeaponController Instance = null;
 
+    private PlayerMovement m_cmpPlayerMovement = null;
+
     [SerializeField]
     private AmmoHUD m_ammoHUD = null;
 
@@ -14,9 +16,9 @@ public class PlayerWeaponController : MonoBehaviour
     private Camera m_weaponCamera = null;
 
     [SerializeField]
-    private Item_Weapon_Player[] m_weaponsList = null;
+    private Weapon_Base[] m_weaponsList = null;
     [SerializeField]
-    private Item_Weapon_Player m_crntWeapon = null;
+    private Weapon_Base m_crntWeapon = null;
 
     [SerializeField]
     private int m_iCrntWeapon;
@@ -31,13 +33,15 @@ public class PlayerWeaponController : MonoBehaviour
     public Camera MainCamera { get => m_mainCamera; }
     public Camera WeaponCamera { get => m_weaponCamera; }
 
-    public Item_Weapon_Player CrntWeapon { get => m_crntWeapon; }
+    public Weapon_Base CrntWeapon { get => m_crntWeapon; }
 
 
 
     private void Awake()
     {
         Instance = this;
+
+        m_cmpPlayerMovement = GetComponent<PlayerMovement>();
 
         m_mainCamera = transform.Find("MainCamera").GetComponent<Camera>();
         m_weaponCamera = transform.Find("MainCamera/WeaponCamera").GetComponent<Camera>();
@@ -47,12 +51,21 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        for (int i = 0; i < m_weaponsList.Length; i++)
-        {
-            m_weaponsList[i].gameObject.SetActive(false);
-        }
+        m_weaponsList = GetComponentsInChildren<Weapon_Base>();
 
-        ToCustomWeapon(0);
+        if (m_weaponsList.Length > 0)
+        {
+            for (int i = 0; i < m_weaponsList.Length; i++)
+            {
+                m_weaponsList[i].gameObject.SetActive(false);
+            }
+
+            ToCustomWeapon(0);
+        }
+        else
+        {
+            Debug.LogError(transform.name + " - " + name + " MISSING Weapons List");
+        }
     }
 
     void Update()
@@ -81,6 +94,15 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
 
+        SetIsMoving();
+    }
+
+    public void SetIsMoving()
+    {
+        if (m_cmpPlayerMovement)
+        {
+            CrntWeapon.SetIsMoving(m_cmpPlayerMovement.IsMoving);
+        }
     }
 
     private void StartThrowGrenade()
@@ -201,13 +223,9 @@ public class PlayerWeaponController : MonoBehaviour
         UpdateAmmoHUD();
     }
 
-    private void NewWeapon(Item_Weapon_Player _newWeapon)
+    private void NewWeapon(Weapon_Base _newWeapon)
     {
         m_crntWeapon = _newWeapon;
     }
 
-    public void SetIsMoving(bool _isMoving)
-    {
-        CrntWeapon.SetIsMoving(_isMoving);
-    }
 }

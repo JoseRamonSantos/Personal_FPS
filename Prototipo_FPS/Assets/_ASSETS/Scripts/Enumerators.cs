@@ -1,9 +1,10 @@
 ﻿
-public enum E_FIRE_MODE
+public enum E_WEAPON_TYPE
 {
     FULL_AUTO,
     SEMI_AUTO,
-    BURST
+    BURST,
+    SHOTGUN
 }
 
 public enum E_WEAPON_STATE

@@ -63,7 +63,7 @@ public class ConsoleManager : MonoBehaviour
         cMessage.AddText(_receiver.transform.name.ToString(), "red".ToString(), false, true);
         cMessage.AddText(":");
         cMessage.AddText(damage.ToString(), "red", true);
-        cMessage.AddText("(" + _hPart + " - " + _distance.ToString("F1") + "m)");
+        cMessage.AddText("(" + _hPart + " - " + _distance.ToString("F0") + "m)");
     }
 
 

@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Component References")]
     private Camera m_cmpMainCamera = null;
     private CharacterController m_cmpCC = null;
-    private PlayerWeaponController m_cmpPWeaponController = null;
 
     [Header("Movement Settings")]
     //public float movementSpeed = 3f;
@@ -57,12 +56,14 @@ public class PlayerMovement : MonoBehaviour
     private bool m_jumpInput = false;
 
 
+    public bool IsMoving { get => m_isMoving; }
+
+
 
     private void Awake()
     {
         m_cmpMainCamera = Camera.main;
         m_cmpCC = GetComponent<CharacterController>();
-        m_cmpPWeaponController = GetComponentInParent<PlayerWeaponController>();
 
         m_cameraStandPosY = m_cmpMainCamera.transform.position.y;
         m_colliderStandHeight = m_cmpCC.height;
@@ -114,23 +115,13 @@ public class PlayerMovement : MonoBehaviour
         m_cmpCC.Move(velocidadTotal * m_crntMaxSpeed * Time.deltaTime);
 
         //WEAPON
-        if (Mathf.Abs(m_movementDirection.magnitude) < 0.05f && m_isMoving)
+        if (Mathf.Abs(m_movementDirection.magnitude) < 0.05f && IsMoving)
         {
             m_isMoving = false;
-
-            if (m_cmpPWeaponController && m_cmpPWeaponController.isActiveAndEnabled)
-            {
-                m_cmpPWeaponController.SetIsMoving(m_isMoving);
-            }
         }
-        else if (Mathf.Abs(m_movementDirection.magnitude) >= 0.05f && !m_isMoving)
+        else if (Mathf.Abs(m_movementDirection.magnitude) >= 0.05f && !IsMoving)
         {
             m_isMoving = true;
-
-            if (m_cmpPWeaponController && m_cmpPWeaponController.isActiveAndEnabled)
-            {
-                m_cmpPWeaponController.SetIsMoving(m_isMoving);
-            }
         }
     }
 
