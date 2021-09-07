@@ -141,6 +141,14 @@ public class PlayerWeaponController : MonoBehaviour
         {
             ToCustomWeapon(1);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ToCustomWeapon(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ToCustomWeapon(3);
+        }
 
         if (Input.mouseScrollDelta.y > 0)
         {
@@ -154,9 +162,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void ToCustomWeapon(int _iNewWeapon)
     {
-        if (m_weaponsList.Length == 0) { return; }
-
-        if (m_weaponsList[_iNewWeapon] == null) { return; }
+        if (m_weaponsList.Length <= _iNewWeapon) { return; }
 
         if (CrntWeapon && m_iNextWeapon == _iNewWeapon) { return; }
 

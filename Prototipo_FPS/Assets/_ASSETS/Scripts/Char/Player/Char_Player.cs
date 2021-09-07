@@ -46,6 +46,27 @@ public class Char_Player : Char_Base
         {
             GameManager.Instance.RestartLevel();
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Time.timeScale = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Time.timeScale = 0.75f;
+        }
+        else if (Input.GetKeyDown(KeyCode.F3))
+        {
+            Time.timeScale = 0.5f;
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            Time.timeScale = 0.25f;
+        }
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Time.timeScale = 0.1f;
+        }
     }
 
     protected override void Die()

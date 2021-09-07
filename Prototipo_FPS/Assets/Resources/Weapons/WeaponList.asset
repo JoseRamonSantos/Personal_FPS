@@ -18,7 +18,7 @@ MonoBehaviour:
     m_damage: 60
     m_bulletsPerShoot: 7
     m_bulletsPerBurst: 3
-    m_maxRange: 250
+    m_maxRange: 200
     m_distanceDamageReduction:
       serializedVersion: 2
       m_Curve:
@@ -94,7 +94,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_accuracy: 100
+    m_accuracy: 200
     m_accuracyDropPerShot: 2
     m_accuracyRecoverPerSecond: 50
     m_accuracyRecoverDelay: 0.2
@@ -117,10 +117,10 @@ MonoBehaviour:
     m_drawSound: {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
   - m_name: M1014
     m_itemType: 0
-    m_damage: 80
+    m_damage: 8
     m_bulletsPerShoot: 7
     m_bulletsPerBurst: 3
-    m_maxRange: 60
+    m_maxRange: 50
     m_distanceDamageReduction:
       serializedVersion: 2
       m_Curve:
@@ -146,14 +146,14 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_accuracy: 100
-    m_accuracyDropPerShot: 5
+    m_accuracyDropPerShot: 6
     m_accuracyRecoverPerSecond: 50
     m_accuracyRecoverDelay: 0.2
     m_recoilRecovery: 0
-    m_fireRate: 300
-    m_hasChamber: 1
-    m_totalAmmo: 6
-    m_clipAmmo: 9
+    m_fireRate: 75
+    m_hasChamber: 0
+    m_totalAmmo: 30
+    m_clipAmmo: 6
     m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
     m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     m_bulletShell: {fileID: 0}

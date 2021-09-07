@@ -380,17 +380,26 @@ public abstract class Weapon_Base : Item_Base
 
         m_crntState = E_WEAPON_STATE.RELOADING;
 
-        if (CrntAmmo > 0)
+        if (HasChamber)
         {
-            m_cmpAnimator.Play("ReloadAmmoLeft", 0, 0f);
+            if (CrntAmmo > 0)
+            {
+                m_cmpAnimator.Play("ReloadAmmoLeft", 0, 0f);
 
-            m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
+                m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
+            }
+            else
+            {
+                m_cmpAnimator.Play("ReloadOutOfAmmo", 0, 0f);
+
+                m_cmpAudioSource.PlayOneShot(m_data.m_reloadOutOfAmmoSound);
+            }
         }
         else
         {
-            m_cmpAnimator.Play("ReloadOutOfAmmo", 0, 0f);
+            m_cmpAnimator.Play("Reload", 0, 0f);
 
-            m_cmpAudioSource.PlayOneShot(m_data.m_reloadOutOfAmmoSound);
+            m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
         }
     }
 
@@ -449,6 +458,7 @@ public abstract class Weapon_Base : Item_Base
         else
         {
             CancelHolster();
+
             StartDraw();
         }
     }
@@ -458,7 +468,8 @@ public abstract class Weapon_Base : Item_Base
         EndReload();
         Debug.LogWarning("START HOLSTER");
         m_crntState = E_WEAPON_STATE.HOLSTERING;
-        m_cmpAnimator.SetBool("Holster", true);
+        //m_cmpAnimator.SetBool("Holster", true);
+        m_cmpAnimator.Play("Holster", 0, 0);
 
         m_cmpAudioSource.PlayOneShot(m_data.m_holsterSound);
     }
@@ -467,7 +478,7 @@ public abstract class Weapon_Base : Item_Base
     {
         Debug.LogWarning("CANCEL HOLSTER");
         m_crntState = E_WEAPON_STATE.DEFAULT;
-        m_cmpAnimator.SetBool("Holster", false);
+        //m_cmpAnimator.SetBool("Holster", false);
 
         m_cmpAudioSource.Stop();
     }
@@ -476,6 +487,7 @@ public abstract class Weapon_Base : Item_Base
     {
         Debug.LogWarning("START DRAW");
         m_crntState = E_WEAPON_STATE.DRAWING;
+        m_cmpAnimator.Play("Draw", 0, 0);
 
         m_cmpAudioSource.PlayOneShot(m_data.m_drawSound);
     }
