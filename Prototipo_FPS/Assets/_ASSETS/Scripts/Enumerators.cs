@@ -24,7 +24,9 @@ public enum E_ITEM_TYPE
 public enum E_HITBOX_PART
 {
     HEAD,
-    BODY,
-    LIMB
+    CHEST,
+    ARM,
+    STOMACH,
+    LEG
 }
 

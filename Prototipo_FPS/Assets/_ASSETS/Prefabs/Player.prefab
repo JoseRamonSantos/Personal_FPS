@@ -1893,6 +1893,7 @@ MonoBehaviour:
     m_damage: 50
     m_bulletsPerShoot: 0
     m_bulletsPerBurst: 0
+    m_fireRate: 60
     m_maxRange: 9999
     m_distanceDamageReduction:
       serializedVersion: 2
@@ -1905,8 +1906,8 @@ MonoBehaviour:
     m_accuracyRecoverPerSecond: 50
     m_accuracyRecoverDelay: 0.2
     m_recoilRecovery: 10
-    m_fireRate: 60
     m_hasChamber: 1
+    m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
     m_triggerSound: {fileID: 0}
@@ -1916,6 +1917,9 @@ MonoBehaviour:
     m_bulletTracer: {fileID: 0}
     m_reloadAmmoLeftSound: {fileID: 0}
     m_reloadOutOfAmmoSound: {fileID: 0}
+    m_reload: {fileID: 0}
+    m_reloadInsert: {fileID: 0}
+    m_reloadClose: {fileID: 0}
     m_holsterSound: {fileID: 0}
     m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
@@ -4548,6 +4552,7 @@ MonoBehaviour:
     m_damage: 50
     m_bulletsPerShoot: 0
     m_bulletsPerBurst: 0
+    m_fireRate: 60
     m_maxRange: 9999
     m_distanceDamageReduction:
       serializedVersion: 2
@@ -4560,8 +4565,8 @@ MonoBehaviour:
     m_accuracyRecoverPerSecond: 50
     m_accuracyRecoverDelay: 0.2
     m_recoilRecovery: 10
-    m_fireRate: 60
     m_hasChamber: 1
+    m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
     m_triggerSound: {fileID: 0}
@@ -4571,6 +4576,9 @@ MonoBehaviour:
     m_bulletTracer: {fileID: 0}
     m_reloadAmmoLeftSound: {fileID: 0}
     m_reloadOutOfAmmoSound: {fileID: 0}
+    m_reload: {fileID: 0}
+    m_reloadInsert: {fileID: 0}
+    m_reloadClose: {fileID: 0}
     m_holsterSound: {fileID: 0}
     m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}

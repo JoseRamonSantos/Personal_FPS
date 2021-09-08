@@ -17,31 +17,4 @@ public class Weapon_Shotgun : Weapon_Base
             base.Shoot();
         }
     }
-
-    protected override void ReloadAmmo()
-    {
-        /*int ammoReloaded = 0;
-
-        ammoReloaded = ClipAmmo - CrntAmmo;
-
-        if (HasChamber && CrntAmmo > 0)
-        {
-            ammoReloaded++;
-        }
-
-        if (ammoReloaded > TotalAmmo)
-        {
-            ammoReloaded -= TotalAmmo - ammoReloaded;
-        }*/
-
-        CrntAmmo ++;
-        TotalAmmo --;
-
-        m_cmpWController.UpdateAmmoHUD();
-
-        if(CrntAmmo == ClipAmmo || TotalAmmo == 0)
-        {
-            CmpAnimator.SetTrigger("EndReload");
-        }
-    }
 }

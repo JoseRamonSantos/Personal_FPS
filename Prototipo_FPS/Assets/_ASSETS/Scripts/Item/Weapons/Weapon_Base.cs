@@ -48,6 +48,7 @@ public abstract class Weapon_Base : Item_Base
     public E_WEAPON_STATE CrntState { get => m_crntState; }
     public bool CanShoot { get => m_canShoot; }
     public bool HasChamber { get => m_data.m_hasChamber; }
+    public bool HasInstantReload { get => m_data.m_hasInstantReload; }
     public int ClipAmmo { get => m_data.m_clipAmmo; }
     public int CrntAmmo
     {
@@ -209,13 +210,17 @@ public abstract class Weapon_Base : Item_Base
             case E_HITBOX_PART.HEAD:
                 damage = Mathf.RoundToInt(damage * Hitbox.HEAD_MULT);
                 break;
-
-            case E_HITBOX_PART.BODY:
-                damage = Mathf.RoundToInt(damage * Hitbox.BODY_MULT);
+            case E_HITBOX_PART.CHEST:
+                damage = Mathf.RoundToInt(damage * Hitbox.CHEST_MULT);
                 break;
-
-            case E_HITBOX_PART.LIMB:
-                damage = Mathf.RoundToInt(damage * Hitbox.LIMB_MULT);
+            case E_HITBOX_PART.ARM:
+                damage = Mathf.RoundToInt(damage * Hitbox.ARM_MULT);
+                break;
+            case E_HITBOX_PART.STOMACH:
+                damage = Mathf.RoundToInt(damage * Hitbox.STOMACH_MULT);
+                break;
+            case E_HITBOX_PART.LEG:
+                damage = Mathf.RoundToInt(damage * Hitbox.LEG_MULT);
                 break;
         }
 
@@ -399,7 +404,7 @@ public abstract class Weapon_Base : Item_Base
         {
             m_cmpAnimator.Play("Reload", 0, 0f);
 
-            m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
+            m_cmpAudioSource.PlayOneShot(m_data.m_reload);
         }
     }
 
@@ -412,7 +417,19 @@ public abstract class Weapon_Base : Item_Base
     }
 
     //Anim Event
-    protected virtual void ReloadAmmo()
+    protected void ReloadAmmo()
+    {
+        if (HasInstantReload)
+        {
+            InstantReload();
+        }
+        else
+        {
+            IncrementReload();
+        }
+    }
+
+    protected void InstantReload()
     {
         int ammoReloaded = 0;
 
@@ -432,6 +449,26 @@ public abstract class Weapon_Base : Item_Base
         TotalAmmo -= ammoReloaded;
 
         m_cmpWController.UpdateAmmoHUD();
+    }
+
+    //Anim Event
+    protected void StartInsert()
+    {
+        m_cmpAudioSource.PlayOneShot(m_data.m_reloadInsert);
+    }
+
+    protected void IncrementReload()
+    {
+        CrntAmmo++;
+        TotalAmmo--;
+
+        m_cmpWController.UpdateAmmoHUD();
+
+        if (CrntAmmo == ClipAmmo || TotalAmmo == 0)
+        {
+            CmpAnimator.SetTrigger("EndReload");
+            m_cmpAudioSource.PlayOneShot(m_data.m_reloadClose);
+        }
     }
 
     protected virtual void DecrementAmmo()

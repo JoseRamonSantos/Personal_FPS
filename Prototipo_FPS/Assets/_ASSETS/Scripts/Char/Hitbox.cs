@@ -5,11 +5,13 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour
 {
     [SerializeField]
-    private E_HITBOX_PART m_hitboxPart = E_HITBOX_PART.BODY;
+    private E_HITBOX_PART m_hitboxPart = E_HITBOX_PART.CHEST;
 
-    public static float HEAD_MULT = 2.0f;
-    public static float BODY_MULT = 1.0f;
-    public static float LIMB_MULT = 0.75f;
+    public static float HEAD_MULT = 4.0f;
+    public static float CHEST_MULT = 1.0f;
+    public static float ARM_MULT = 1.0f;
+    public static float STOMACH_MULT = 1.0f;
+    public static float LEG_MULT = 0.75f;
 
     public E_HITBOX_PART GetHitboxPart
     {
