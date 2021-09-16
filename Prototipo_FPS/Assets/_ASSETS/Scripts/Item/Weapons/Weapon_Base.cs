@@ -38,6 +38,25 @@ public abstract class Weapon_Base : Item_Base
     [SerializeField]
     protected float m_crntAccRecoverDelay = 0;
 
+    [Header("Recoil_Transform")]
+    [SerializeField]
+    protected Transform m_recoilPositionTranform;
+    [SerializeField]
+    protected Transform m_recoilRotationTranform;
+
+    protected bool aim;
+    [Header("Recoil settings")]
+    [SerializeField]
+    protected Vector3 m_crntRecoil1;
+    [SerializeField]
+    protected Vector3 m_crntRecoil2;
+    [SerializeField]
+    protected Vector3 m_crntRecoil3;
+    [SerializeField]
+    protected Vector3 m_crntRecoil4;
+    [SerializeField]
+    protected Vector3 m_rotationOutput;
+
     protected int m_crntAmmo = 0;
     protected int m_totalAmmo = 0;
 
@@ -80,6 +99,15 @@ public abstract class Weapon_Base : Item_Base
 
     protected virtual void Awake()
     {
+        if (!m_recoilPositionTranform)
+        {
+            m_recoilPositionTranform = transform.Find("Armature/weapon/ShootSpot");
+        }
+        if (!m_recoilRotationTranform)
+        {
+            m_recoilRotationTranform = transform.Find("Armature/weapon/ShootSpot");
+        }
+
         m_cmpAnimator = GetComponentInChildren<Animator>();
         m_cmpAudioSource = GetComponentInParent<AudioSource>();
         m_cmpWController = GetComponentInParent<PlayerWeaponController>();
@@ -135,12 +163,17 @@ public abstract class Weapon_Base : Item_Base
         AccRecover();
     }
 
+    void FixedUpdate()
+    {
+        RecoilRecover();
+    }
+
     protected override void TakeItem(Char_Base _char)
     {
 
     }
 
-    #region ACC
+    #region ACC & RECOIL
     protected virtual void AccRecover()
     {
         CrntAccRecoverDelay -= Time.deltaTime;
@@ -155,6 +188,46 @@ public abstract class Weapon_Base : Item_Base
     {
         CrntAccRecoverDelay = AccRecoverDelay;
     }
+
+    private void RecoilRecover()
+    {
+        m_crntRecoil1 = Vector3.Lerp(m_crntRecoil1, Vector3.zero, m_data.m_recoil1 * Time.deltaTime);
+        m_crntRecoil2 = Vector3.Lerp(m_crntRecoil2, m_crntRecoil1, m_data.m_recoil2 * Time.deltaTime);
+        m_crntRecoil3 = Vector3.Lerp(m_crntRecoil3, Vector3.zero, m_data.m_recoil3 * Time.deltaTime);
+        m_crntRecoil4 = Vector3.Lerp(m_crntRecoil4, m_crntRecoil3, m_data.m_recoil4 * Time.deltaTime);
+
+        m_recoilPositionTranform.localPosition = Vector3.Slerp(m_recoilPositionTranform.localPosition, m_crntRecoil3, m_data.m_positionDampTime * Time.fixedDeltaTime);
+        m_rotationOutput = Vector3.Slerp(m_rotationOutput, m_crntRecoil1, m_data.m_rotationDampTime * Time.fixedDeltaTime);
+        m_recoilRotationTranform.localRotation = Quaternion.Euler(m_rotationOutput);
+    }
+
+    public void AddRecoil()
+    {
+        if (aim == true)
+        {
+            m_crntRecoil1 += new Vector3(
+                m_data.m_recoilRotation_Aim.x,
+                Random.Range(-m_data.m_recoilRotation_Aim.y, m_data.m_recoilRotation_Aim.y),
+                Random.Range(-m_data.m_recoilRotation_Aim.z, m_data.m_recoilRotation_Aim.z));
+
+            m_crntRecoil3 += new Vector3(Random.Range(
+                -m_data.m_recoilKickBack_Aim.x, m_data.m_recoilKickBack_Aim.x),
+                Random.Range(-m_data.m_recoilKickBack_Aim.y, m_data.m_recoilKickBack_Aim.y),
+                m_data.m_recoilKickBack_Aim.z);
+        }
+        if (aim == false)
+        {
+            m_crntRecoil1 += new Vector3(
+                m_data.m_recoilRotation.x,
+                Random.Range(-m_data.m_recoilRotation.y, m_data.m_recoilRotation.y),
+                Random.Range(-m_data.m_recoilRotation.z, m_data.m_recoilRotation.z));
+
+            m_crntRecoil3 += new Vector3(
+                Random.Range(-m_data.m_recoilKickBack.x, m_data.m_recoilKickBack.x),
+                Random.Range(-m_data.m_recoilKickBack.y, m_data.m_recoilKickBack.y),
+                m_data.m_recoilKickBack.z);
+        }
+    }
     #endregion
 
     #region TRIGGER
@@ -168,6 +241,8 @@ public abstract class Weapon_Base : Item_Base
     public void ReleaseTrigger()
     {
         m_triggerIsPullled = false;
+
+        //m_cmpAudioSource.PlayOneShot(m_data.m_triggerSound, 1);
 
         if (CrntAmmo == 0 && m_crntState != E_WEAPON_STATE.RELOADING)
         {
@@ -267,7 +342,7 @@ public abstract class Weapon_Base : Item_Base
 
         ResetAccRecover();
 
-        DecrementAmmo();
+        DecreaseCrntAmmo(1);
 
         if (m_muzzleFlash)
         {
@@ -275,6 +350,8 @@ public abstract class Weapon_Base : Item_Base
         }
 
         Shoot();
+
+        AddRecoil();
     }
 
     protected virtual void Shoot()
@@ -292,7 +369,7 @@ public abstract class Weapon_Base : Item_Base
             {
                 cmpChar = cmpHitbox.GetComponentInParent<Char_Base>();
 
-                if (cmpChar)
+                if (cmpChar && !cmpChar.IsDead)
                 {
                     DoDamage(cmpChar, cmpHitbox.GetHitboxPart);
                 }
@@ -309,7 +386,6 @@ public abstract class Weapon_Base : Item_Base
                 GameObject bImpact;
 
                 bImpact = Instantiate(bImpactPrefab, rHit.point, Quaternion.LookRotation(rHit.normal));
-                bImpact.transform.parent = rHit.transform;
             }
 
             destination = rHit.point;
@@ -389,13 +465,13 @@ public abstract class Weapon_Base : Item_Base
         {
             if (CrntAmmo > 0)
             {
-                m_cmpAnimator.Play("ReloadAmmoLeft", 0, 0f);
+                m_cmpAnimator.Play("ReloadAmmoLeft", 0, 0);
 
                 m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
             }
             else
             {
-                m_cmpAnimator.Play("ReloadOutOfAmmo", 0, 0f);
+                m_cmpAnimator.Play("ReloadOutOfAmmo", 0, 0);
 
                 m_cmpAudioSource.PlayOneShot(m_data.m_reloadOutOfAmmoSound);
             }
@@ -445,8 +521,8 @@ public abstract class Weapon_Base : Item_Base
             ammoReloaded -= TotalAmmo - ammoReloaded;
         }
 
-        CrntAmmo += ammoReloaded;
-        TotalAmmo -= ammoReloaded;
+        IncreaseCrntAmmo(ammoReloaded);
+        DecreaseTotalAmmo(ammoReloaded);
 
         m_cmpWController.UpdateAmmoHUD();
     }
@@ -459,8 +535,8 @@ public abstract class Weapon_Base : Item_Base
 
     protected void IncrementReload()
     {
-        CrntAmmo++;
-        TotalAmmo--;
+        IncreaseCrntAmmo(1);
+        DecreaseTotalAmmo(1);
 
         m_cmpWController.UpdateAmmoHUD();
 
@@ -471,16 +547,31 @@ public abstract class Weapon_Base : Item_Base
         }
     }
 
-    protected virtual void DecrementAmmo()
+    protected virtual void DecreaseCrntAmmo(int _amount)
     {
-        CrntAmmo--;
+        if (GameManager.Instance.InfiniteAmmo == E_INFINITE_AMMO.INFINITE_CLIP) { return; }
+
+        CrntAmmo -= _amount;
+
+        m_cmpWController.UpdateAmmoHUD();
+    }
+    protected virtual void IncreaseCrntAmmo(int _amount)
+    {
+        CrntAmmo += _amount;
 
         m_cmpWController.UpdateAmmoHUD();
     }
 
-    public virtual void AddTotalAmmo(int _amount)
+    public void IncreaseTotalAmmo(int _amount)
     {
         TotalAmmo += _amount;
+        m_cmpWController.UpdateAmmoHUD();
+    }
+
+    public void DecreaseTotalAmmo(int _amount)
+    {
+        if (GameManager.Instance.InfiniteAmmo == E_INFINITE_AMMO.INFINITE_TOTAL) { return; }
+        TotalAmmo -= _amount;
         m_cmpWController.UpdateAmmoHUD();
     }
     #endregion

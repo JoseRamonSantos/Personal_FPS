@@ -30,3 +30,9 @@ public enum E_HITBOX_PART
     LEG
 }
 
+public enum E_INFINITE_AMMO
+{
+    DEFAULT,
+    INFINITE_CLIP,
+    INFINITE_TOTAL
+}

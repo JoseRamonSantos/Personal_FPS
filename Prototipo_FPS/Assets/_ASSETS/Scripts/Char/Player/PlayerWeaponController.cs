@@ -12,7 +12,9 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField]
     private AmmoHUD m_ammoHUD = null;
 
+    [SerializeField]
     private Camera m_mainCamera = null;
+    [SerializeField]
     private Camera m_weaponCamera = null;
 
     [SerializeField]
@@ -30,6 +32,8 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField]
     private int m_grenadesNumber = 1;
 
+
+
     public Camera MainCamera { get => m_mainCamera; }
     public Camera WeaponCamera { get => m_weaponCamera; }
 
@@ -43,8 +47,14 @@ public class PlayerWeaponController : MonoBehaviour
 
         m_cmpPlayerMovement = GetComponent<PlayerMovement>();
 
-        m_mainCamera = transform.Find("MainCamera").GetComponent<Camera>();
-        m_weaponCamera = transform.Find("MainCamera/WeaponCamera").GetComponent<Camera>();
+        if (!m_mainCamera)
+        {
+            m_mainCamera = transform.Find("MainCamera").GetComponent<Camera>();
+        }
+        if (!m_weaponCamera)
+        {
+            m_weaponCamera = transform.Find("MainCamera/WeaponCamera").GetComponent<Camera>();
+        }
     }
 
     private void Start()

@@ -53,6 +53,16 @@ MonoBehaviour:
     m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
+    m_positionDampTime: 2
+    m_rotationDampTime: 4
+    m_recoil1: 30
+    m_recoil2: 45
+    m_recoil3: 30
+    m_recoil4: 45
+    m_recoilRotation: {x: -30, y: 4, z: 15}
+    m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
+    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
     m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     m_bulletShell: {fileID: 0}
@@ -73,7 +83,7 @@ MonoBehaviour:
     m_damage: 25
     m_bulletsPerShoot: 5
     m_bulletsPerBurst: 3
-    m_fireRate: 300
+    m_fireRate: 400
     m_maxRange: 100
     m_distanceDamageReduction:
       serializedVersion: 2
@@ -106,8 +116,18 @@ MonoBehaviour:
     m_recoilRecovery: 0
     m_hasChamber: 1
     m_hasInstantReload: 1
-    m_totalAmmo: 45
+    m_totalAmmo: 90
     m_clipAmmo: 9
+    m_positionDampTime: 6
+    m_rotationDampTime: 9
+    m_recoil1: 35
+    m_recoil2: 50
+    m_recoil3: 35
+    m_recoil4: 50
+    m_recoilRotation: {x: -35, y: 4, z: 15}
+    m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
+    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
     m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     m_bulletShell: {fileID: 0}
@@ -161,8 +181,18 @@ MonoBehaviour:
     m_recoilRecovery: 0
     m_hasChamber: 0
     m_hasInstantReload: 0
-    m_totalAmmo: 30
+    m_totalAmmo: 36
     m_clipAmmo: 6
+    m_positionDampTime: 36
+    m_rotationDampTime: 6
+    m_recoil1: 35
+    m_recoil2: 50
+    m_recoil3: 35
+    m_recoil4: 50
+    m_recoilRotation: {x: -70, y: 8, z: 30}
+    m_recoilKickBack: {x: 0.4, y: 0.4, z: -1}
+    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_triggerSound: {fileID: 8300000, guid: 5993733069dfa254996d4600d3e524f0, type: 3}
     m_fireSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
     m_bulletShell: {fileID: 0}

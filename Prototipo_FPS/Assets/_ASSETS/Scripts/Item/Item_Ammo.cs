@@ -11,7 +11,7 @@ public class Item_Ammo : Item_Base
     {
         if (_char.GetComponent<Char_Player>())
         {
-            _char.GetComponent<Char_Player>().CmpWController.CrntWeapon.AddTotalAmmo(m_ammoAmount);
+            _char.GetComponent<Char_Player>().CmpWController.CrntWeapon.IncreaseTotalAmmo(m_ammoAmount);
         }
     }
 }

@@ -24,11 +24,11 @@ public class G36CFire : MonoBehaviour
 
     public GameObject bulletPath;
 
-    public New_Weapon_Recoil_Script recoil;
+    public Weapon_Recoil recoil;
 
     void Start()
     {
-        recoil = this.GetComponent<New_Weapon_Recoil_Script>();
+        recoil = this.GetComponent<Weapon_Recoil>();
         reload = this.GetComponent<G36CReload>();
         g36cmaster = this.GetComponent<G36CMaster>();
         singleShot.clip = single;

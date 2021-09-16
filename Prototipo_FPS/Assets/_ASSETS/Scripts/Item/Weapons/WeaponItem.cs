@@ -30,6 +30,20 @@ public class WeaponItem
     public      int             m_totalAmmo                 = 150;
     public      int             m_clipAmmo                  = 30;
 
+    [Header("RECOIL SETTINGS")]
+    public      float           m_positionDampTime          = 6;
+    public      float           m_rotationDampTime          = 9;
+    [Space(10)]
+    public      float           m_recoil1                   = 35;
+    public      float           m_recoil2                   = 50;
+    public      float           m_recoil3                   = 35;
+    public      float           m_recoil4                   = 50;
+    [Space(10)]
+    public      Vector3         m_recoilRotation            = new Vector3(-35, 4, 15);
+    public      Vector3         m_recoilKickBack            = new Vector3(0.2f, 0.2f, -0.3f);
+    public      Vector3         m_recoilRotation_Aim        = new Vector3(0, 0, 0);
+    public      Vector3         m_recoilKickBack_Aim        = new Vector3(0, 0, 0);
+
     [Header("SHOOT EFFECTS")]
     public      AudioClip       m_triggerSound              = null;
     public      AudioClip       m_fireSound                 = null;

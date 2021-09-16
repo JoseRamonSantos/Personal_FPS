@@ -6,6 +6,8 @@ public class Char_Base : MonoBehaviour
 {
     #region VARIABLES
     [SerializeField]
+    protected Animator m_cmpAnimator = null;
+    [SerializeField]
     protected GameObject m_bulletImpact = null;
     [SerializeField]
     protected int m_maxHP = 100;
@@ -22,10 +24,16 @@ public class Char_Base : MonoBehaviour
     public GameObject BulletImpact { get => m_bulletImpact; }
     public int MaxHP { get => m_maxHP; }
     public int CrntHP { get => m_crntHP; set => m_crntHP = Mathf.Clamp(value, 0, MaxHP); }
+    public bool IsDead { get => m_isDead; }
     #endregion
 
 
     #region METHODS
+    protected virtual void Awake()
+    {
+        m_cmpAnimator = GetComponent<Animator>();
+    }
+
     protected virtual void Start()
     {
         if (CrntHP == 0)
@@ -39,10 +47,12 @@ public class Char_Base : MonoBehaviour
         if (m_isDead) { return; }
 
         Debug.Log(transform.name + " has received " + _damage + " damage. (Invulnerability =" + m_invulnerable + ")");
+        m_cmpAnimator.SetTrigger("Hit");
 
         if (m_invulnerable) { return; }
 
         CrntHP -= _damage;
+
 
         if (CrntHP == 0)
         {
@@ -57,6 +67,9 @@ public class Char_Base : MonoBehaviour
 
     protected virtual void Die()
     {
+        m_cmpAnimator.ResetTrigger("Hit");
+        m_cmpAnimator.Play("Die", 0, 0);
+
         m_isDead = true;
     }
     #endregion

@@ -6,13 +6,15 @@ using UnityEngine.AI;
 public class Char_Enemy : Char_Base
 {
 
-    private void Awake()
+    public override void ReceiveDamage(int _damage)
     {
-
+        base.ReceiveDamage(_damage);
     }
 
     protected override void Die()
     {
         base.Die();
+
+        this.enabled = false;
     }
 }

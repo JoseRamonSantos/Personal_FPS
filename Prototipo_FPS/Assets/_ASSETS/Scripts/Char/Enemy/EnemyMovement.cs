@@ -33,6 +33,29 @@ public class EnemyMovement : MonoBehaviour
     private bool m_crouched = false;
 
 
+
+    public Vector3 Destination
+    {
+        get => m_destination;
+
+        set
+        {
+            if (m_cmpAgent.isOnNavMesh)
+            {
+                NavMeshHit nVHit;
+
+                if(NavMesh.SamplePosition(transform.position, out nVHit, 99, m_cmpAgent.areaMask))
+                {
+                    value = nVHit.position;
+                }
+            }
+
+            m_destination = value;
+        }
+    }
+
+
+
     private void Awake()
     {
         m_cmpAgent = GetComponent<NavMeshAgent>();
@@ -41,17 +64,19 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        m_destination = transform.position;
+        Destination = transform.position;
+
         if (m_walkSpeed == 0)
         {
             m_walkSpeed = m_runSpeed * 0.75f;
         }
+
         Stand();
     }
 
     private void Update()
     {
-        if (m_debug) { return; }
+        if (m_debug || !m_cmpAgent.isOnNavMesh) { return; }
 
         MoveToPos();
         TrackTarget();
@@ -61,16 +86,15 @@ public class EnemyMovement : MonoBehaviour
     //MOVE
     private void MoveToPos()
     {
-
-        if (!m_cmpAgent.pathPending && m_cmpAgent.remainingDistance > m_cmpAgent.stoppingDistance && m_destination != m_cmpAgent.destination)
+        if (!m_cmpAgent.pathPending && m_cmpAgent.remainingDistance > m_cmpAgent.stoppingDistance && Destination != m_cmpAgent.destination)
         {
-            m_cmpAgent.SetDestination(m_destination);
+            m_cmpAgent.SetDestination(Destination);
         }
     }
 
     public bool IsInTheDestinationPos()
     {
-        float rDistance = (m_destination - transform.position).magnitude;
+        float rDistance = (Destination - transform.position).magnitude;
 
         return rDistance <= m_cmpAgent.stoppingDistance;
     }
@@ -91,10 +115,10 @@ public class EnemyMovement : MonoBehaviour
         NavMeshHit NVHit;
         NavMesh.SamplePosition(_newDestination, out NVHit, 10, m_cmpAgent.areaMask);
 
-        m_destination = NVHit.position;
+        Destination = NVHit.position;
 
         if (m_debug) { return; }
-        m_cmpAgent.SetDestination(m_destination);
+        m_cmpAgent.SetDestination(Destination);
     }
 
 
@@ -161,7 +185,13 @@ public class EnemyMovement : MonoBehaviour
             animSpeed = 0;
         }
 
-        m_cmpAnimator.SetFloat("Speed", animSpeed);
-        m_cmpAnimator.SetBool("Crouch", m_crouched);
+        if (Utility.AnimatorHasParameter(m_cmpAnimator, "Speed"))
+        {
+            m_cmpAnimator.SetFloat("Speed", animSpeed);
+        }
+        if (Utility.AnimatorHasParameter(m_cmpAnimator, "Crouch"))
+        {
+            m_cmpAnimator.SetBool("Crouch", m_crouched);
+        }
     }
 }
