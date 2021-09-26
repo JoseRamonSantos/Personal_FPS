@@ -180,8 +180,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (CrntWeapon)
         {
-
-            CrntWeapon.Holster();
+            CrntWeapon.StartHolster();
         }
         else
         {

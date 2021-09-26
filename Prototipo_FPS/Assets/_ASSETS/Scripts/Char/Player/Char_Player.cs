@@ -16,7 +16,7 @@ public class Char_Player : Char_Base
     public PlayerWeaponController CmpWController { get => m_cmpWController; }
 
 
-    private void Awake()
+    protected override void Awake()
     {
         Instance = this;
 

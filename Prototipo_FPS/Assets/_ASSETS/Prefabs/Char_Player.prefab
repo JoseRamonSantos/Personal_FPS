@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 652541016001302575}
   - component: {fileID: 652541016001302570}
   - component: {fileID: 8529803211677023369}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Char_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,47 +736,70 @@ MonoBehaviour:
     m_name: 
     m_itemType: 1
     m_damage: 50
-    m_bulletsPerShoot: 7
-    m_bulletsPerBurst: 3
     m_fireRate: 60
     m_maxRange: 9999
-    m_distanceDamageReduction:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_accuracy: 100
-    m_accuracyDropPerShot: 3
-    m_accuracyRecoverPerSecond: 50
-    m_accuracyRecoverDelay: 0.2
-    m_recoilRecovery: 10
-    m_hasChamber: 1
-    m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
-    m_positionDampTime: 0
-    m_rotationDampTime: 0
-    m_recoil1: 0
-    m_recoil2: 0
-    m_recoil3: 0
-    m_recoil4: 0
-    m_recoilRotation: {x: 0, y: 0, z: 0}
-    m_recoilKickBack: {x: 0, y: 0, z: 0}
-    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
-    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_triggerSound: {fileID: 0}
-    m_fireSound: {fileID: 0}
+    m_accuracy:
+      m_accuracy: 100
+      m_accuracyDropPerShot: 3
+      m_accuracyRecoverPerSecond: 50
+      m_accuracyRecoverDelay: 0.2
+    m_options:
+      m_bulletsPerShoot: 5
+      m_bulletsPerBurst: 3
+      m_distanceDamageReduction:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_hasChamber: 1
+      m_hasInstantReload: 1
+      m_instantiateProjectile: 0
+      m_pfProjectile: {fileID: 0}
+    m_recoilSettings:
+      m_positionDampTime: 6
+      m_rotationDampTime: 9
+      m_recoil1: 35
+      m_recoil2: 50
+      m_recoil3: 35
+      m_recoil4: 50
+      m_recoilRotation: {x: -35, y: 4, z: 15}
+      m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
+      m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+      m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_bulletShell: {fileID: 0}
-    m_bulletShellSound: {fileID: 0}
     m_bulletTracer: {fileID: 0}
-    m_reloadAmmoLeftSound: {fileID: 0}
-    m_reloadOutOfAmmoSound: {fileID: 0}
-    m_reload: {fileID: 0}
-    m_reloadInsert: {fileID: 0}
-    m_reloadClose: {fileID: 0}
-    m_holsterSound: {fileID: 0}
-    m_drawSound: {fileID: 0}
+    m_soundClips:
+      m_triggerSound: {fileID: 0}
+      m_fireSound: {fileID: 0}
+      m_bulletShellSound: {fileID: 0}
+      m_reloadAmmoLeftSound: {fileID: 0}
+      m_reloadOutOfAmmoSound: {fileID: 0}
+      m_reload: {fileID: 0}
+      m_reloadInsert: {fileID: 0}
+      m_reloadClose: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0
@@ -1779,8 +1802,6 @@ Transform:
   - {fileID: 2501047842827565544}
   - {fileID: 5276549069438183993}
   - {fileID: 2830425255061744504}
-  - {fileID: 2830425255199287975}
-  - {fileID: 2830425254270215076}
   m_Father: {fileID: 2501047842827565480}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3199,47 +3220,70 @@ MonoBehaviour:
     m_name: 
     m_itemType: 1
     m_damage: 50
-    m_bulletsPerShoot: 0
-    m_bulletsPerBurst: 0
     m_fireRate: 60
     m_maxRange: 9999
-    m_distanceDamageReduction:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_accuracy: 100
-    m_accuracyDropPerShot: 3
-    m_accuracyRecoverPerSecond: 50
-    m_accuracyRecoverDelay: 0.2
-    m_recoilRecovery: 10
-    m_hasChamber: 1
-    m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
-    m_positionDampTime: 0
-    m_rotationDampTime: 0
-    m_recoil1: 0
-    m_recoil2: 0
-    m_recoil3: 0
-    m_recoil4: 0
-    m_recoilRotation: {x: 0, y: 0, z: 0}
-    m_recoilKickBack: {x: 0, y: 0, z: 0}
-    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
-    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_triggerSound: {fileID: 0}
-    m_fireSound: {fileID: 0}
+    m_accuracy:
+      m_accuracy: 100
+      m_accuracyDropPerShot: 3
+      m_accuracyRecoverPerSecond: 50
+      m_accuracyRecoverDelay: 0.2
+    m_options:
+      m_bulletsPerShoot: 5
+      m_bulletsPerBurst: 3
+      m_distanceDamageReduction:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_hasChamber: 1
+      m_hasInstantReload: 1
+      m_instantiateProjectile: 0
+      m_pfProjectile: {fileID: 0}
+    m_recoilSettings:
+      m_positionDampTime: 6
+      m_rotationDampTime: 9
+      m_recoil1: 35
+      m_recoil2: 50
+      m_recoil3: 35
+      m_recoil4: 50
+      m_recoilRotation: {x: -35, y: 4, z: 15}
+      m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
+      m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+      m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_bulletShell: {fileID: 0}
-    m_bulletShellSound: {fileID: 0}
     m_bulletTracer: {fileID: 0}
-    m_reloadAmmoLeftSound: {fileID: 0}
-    m_reloadOutOfAmmoSound: {fileID: 0}
-    m_reload: {fileID: 0}
-    m_reloadInsert: {fileID: 0}
-    m_reloadClose: {fileID: 0}
-    m_holsterSound: {fileID: 0}
-    m_drawSound: {fileID: 0}
+    m_soundClips:
+      m_triggerSound: {fileID: 0}
+      m_fireSound: {fileID: 0}
+      m_bulletShellSound: {fileID: 0}
+      m_reloadAmmoLeftSound: {fileID: 0}
+      m_reloadOutOfAmmoSound: {fileID: 0}
+      m_reload: {fileID: 0}
+      m_reloadInsert: {fileID: 0}
+      m_reloadClose: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0
@@ -3464,8 +3508,6 @@ Transform:
   - {fileID: 2564811159130726013}
   - {fileID: 5993617353952954943}
   - {fileID: 2830425253443648552}
-  - {fileID: 2830425253589329546}
-  - {fileID: 2830425255123240925}
   m_Father: {fileID: 2564811159130725939}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4474,36 +4516,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2830425253404408015
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425253404408012}
-  m_Layer: 9
-  m_Name: RecoilRot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425253404408012
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425253404408015}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: 0.0018499244, y: 0.39330965, z: 0.47501227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6294281036285408377}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830425253407416329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,36 +4661,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2564811159130725999}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2830425253589329557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425253589329546}
-  m_Layer: 9
-  m_Name: RecoilPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425253589329546
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425253589329557}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: 0.002165213, y: 0.11939141, z: 0.111467406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2564811159130725999}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830425253755551092
 GameObject:
@@ -5084,36 +5066,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2830425254157026283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425254157026280}
-  m_Layer: 9
-  m_Name: RecoilPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425254157026280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425254157026283}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: 0.0018499244, y: 0.39330965, z: 0.47501227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6294281036285408377}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830425254217036816
 GameObject:
   m_ObjectHideFlags: 0
@@ -5299,36 +5251,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6294281036285408377}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2830425254270215079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425254270215076}
-  m_Layer: 9
-  m_Name: RecoilRot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425254270215076
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425254270215079}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: -0.003, y: 0.341, z: 0.471}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2501047842827565558}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830425254421302759
 GameObject:
@@ -6001,66 +5923,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2501047842827565558}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2830425255123240924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425255123240925}
-  m_Layer: 9
-  m_Name: RecoilRot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425255123240925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425255123240924}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: 0.002165213, y: 0.11939141, z: 0.111467406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2564811159130725999}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2830425255199287974
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830425255199287975}
-  m_Layer: 9
-  m_Name: RecoilPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2830425255199287975
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2830425255199287974}
-  m_LocalRotation: {x: -0.28629574, y: -0.00000076907895, z: -0.00000022980346, w: 0.9581413}
-  m_LocalPosition: {x: -0.003, y: 0.341, z: 0.471}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2501047842827565558}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830425255238975119
 GameObject:
@@ -6802,47 +6664,70 @@ MonoBehaviour:
     m_name: 
     m_itemType: 1
     m_damage: 50
-    m_bulletsPerShoot: 0
-    m_bulletsPerBurst: 0
     m_fireRate: 60
     m_maxRange: 9999
-    m_distanceDamageReduction:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_accuracy: 100
-    m_accuracyDropPerShot: 3
-    m_accuracyRecoverPerSecond: 50
-    m_accuracyRecoverDelay: 0.2
-    m_recoilRecovery: 10
-    m_hasChamber: 1
-    m_hasInstantReload: 1
     m_totalAmmo: 150
     m_clipAmmo: 30
-    m_positionDampTime: 0
-    m_rotationDampTime: 0
-    m_recoil1: 0
-    m_recoil2: 0
-    m_recoil3: 0
-    m_recoil4: 0
-    m_recoilRotation: {x: 0, y: 0, z: 0}
-    m_recoilKickBack: {x: 0, y: 0, z: 0}
-    m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
-    m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_triggerSound: {fileID: 0}
-    m_fireSound: {fileID: 0}
+    m_accuracy:
+      m_accuracy: 100
+      m_accuracyDropPerShot: 3
+      m_accuracyRecoverPerSecond: 50
+      m_accuracyRecoverDelay: 0.2
+    m_options:
+      m_bulletsPerShoot: 5
+      m_bulletsPerBurst: 3
+      m_distanceDamageReduction:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_hasChamber: 1
+      m_hasInstantReload: 1
+      m_instantiateProjectile: 0
+      m_pfProjectile: {fileID: 0}
+    m_recoilSettings:
+      m_positionDampTime: 6
+      m_rotationDampTime: 9
+      m_recoil1: 35
+      m_recoil2: 50
+      m_recoil3: 35
+      m_recoil4: 50
+      m_recoilRotation: {x: -35, y: 4, z: 15}
+      m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
+      m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
+      m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
     m_bulletShell: {fileID: 0}
-    m_bulletShellSound: {fileID: 0}
     m_bulletTracer: {fileID: 0}
-    m_reloadAmmoLeftSound: {fileID: 0}
-    m_reloadOutOfAmmoSound: {fileID: 0}
-    m_reload: {fileID: 0}
-    m_reloadInsert: {fileID: 0}
-    m_reloadClose: {fileID: 0}
-    m_holsterSound: {fileID: 0}
-    m_drawSound: {fileID: 0}
+    m_soundClips:
+      m_triggerSound: {fileID: 0}
+      m_fireSound: {fileID: 0}
+      m_bulletShellSound: {fileID: 0}
+      m_reloadAmmoLeftSound: {fileID: 0}
+      m_reloadOutOfAmmoSound: {fileID: 0}
+      m_reload: {fileID: 0}
+      m_reloadInsert: {fileID: 0}
+      m_reloadClose: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0
@@ -7483,8 +7368,6 @@ Transform:
   - {fileID: 6294281036285408367}
   - {fileID: 7454560405768172462}
   - {fileID: 2830425254219082490}
-  - {fileID: 2830425254157026280}
-  - {fileID: 2830425253404408012}
   m_Father: {fileID: 6294281036285408299}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

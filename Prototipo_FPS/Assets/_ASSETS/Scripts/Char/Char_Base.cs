@@ -42,12 +42,21 @@ public class Char_Base : MonoBehaviour
         }
     }
 
+    public virtual void DoDamage(Char_Base _target, int _dmg)
+    {
+        _target.ReceiveDamage(_dmg);
+    }
+
     public virtual void ReceiveDamage(int _damage)
     {
         if (m_isDead) { return; }
 
         Debug.Log(transform.name + " has received " + _damage + " damage. (Invulnerability =" + m_invulnerable + ")");
-        m_cmpAnimator.SetTrigger("Hit");
+
+        if (m_cmpAnimator)
+        {
+            m_cmpAnimator.SetTrigger("Hit");
+        }
 
         if (m_invulnerable) { return; }
 
@@ -67,8 +76,11 @@ public class Char_Base : MonoBehaviour
 
     protected virtual void Die()
     {
-        m_cmpAnimator.ResetTrigger("Hit");
-        m_cmpAnimator.Play("Die", 0, 0);
+        if (m_cmpAnimator)
+        {
+            m_cmpAnimator.ResetTrigger("Hit");
+            m_cmpAnimator.Play("Die", 0, 0);
+        }
 
         m_isDead = true;
     }

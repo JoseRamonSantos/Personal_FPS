@@ -58,13 +58,17 @@ public class WeaponEditor : EditorWindow
 
         //EditorUtility.SetDirty(someClass);
         GUILayout.Space(10);
-        inventoryItemList.weaponList[viewIndex - 1].m_name = EditorGUILayout.TextField("Name", inventoryItemList.weaponList[viewIndex - 1].m_name as string);
-        inventoryItemList.weaponList[viewIndex - 1].m_damage = EditorGUILayout.IntField("Damage", inventoryItemList.weaponList[viewIndex - 1].m_damage);
-        inventoryItemList.weaponList[viewIndex - 1].m_fireRate = EditorGUILayout.FloatField("Fire rate", inventoryItemList.weaponList[viewIndex - 1].m_fireRate);
-        inventoryItemList.weaponList[viewIndex - 1].m_accuracyDropPerShot = EditorGUILayout.FloatField("Accuracy drop per shoot", inventoryItemList.weaponList[viewIndex - 1].m_accuracyDropPerShot);
-        inventoryItemList.weaponList[viewIndex - 1].m_hasChamber = EditorGUILayout.Toggle("Has Chamber", inventoryItemList.weaponList[viewIndex - 1].m_hasChamber);
-        inventoryItemList.weaponList[viewIndex - 1].m_totalAmmo = EditorGUILayout.IntField("Init Ammo", inventoryItemList.weaponList[viewIndex - 1].m_totalAmmo);
-        inventoryItemList.weaponList[viewIndex - 1].m_clipAmmo = EditorGUILayout.IntField("Clip Ammo", inventoryItemList.weaponList[viewIndex - 1].m_clipAmmo);
+
+        WeaponItem wItem = inventoryItemList.weaponList[viewIndex - 1];
+
+        wItem.m_name = EditorGUILayout.TextField("Name", inventoryItemList.weaponList[viewIndex - 1].m_name as string);
+        wItem.m_damage = EditorGUILayout.IntField("Damage", inventoryItemList.weaponList[viewIndex - 1].m_damage);
+        wItem.m_fireRate = EditorGUILayout.FloatField("Fire rate", inventoryItemList.weaponList[viewIndex - 1].m_fireRate);
+        wItem.m_accuracy.m_accuracyDropPerShot = EditorGUILayout.FloatField("Accuracy drop per shoot", inventoryItemList.weaponList[viewIndex - 1].m_accuracy.m_accuracyDropPerShot);
+        wItem.m_accuracy.m_accuracyRecoverPerSecond = EditorGUILayout.FloatField("Accuracy drop per shoot", inventoryItemList.weaponList[viewIndex - 1].m_accuracy.m_accuracyRecoverPerSecond);
+        wItem.m_options.m_hasChamber = EditorGUILayout.Toggle("Has Chamber", inventoryItemList.weaponList[viewIndex - 1].m_options.m_hasChamber);
+        wItem.m_totalAmmo = EditorGUILayout.IntField("Init Ammo", inventoryItemList.weaponList[viewIndex - 1].m_totalAmmo);
+        wItem.m_clipAmmo = EditorGUILayout.IntField("Clip Ammo", inventoryItemList.weaponList[viewIndex - 1].m_clipAmmo);
         //inventoryItemList.weaponList[viewIndex-1].mode     = (ModeSkillType)EditorGUILayout.EnumPopup  ("Mode",        inventoryItemList.skillList[viewIndex-1].mode);
 
         GUILayout.Label("Icon");

@@ -10,11 +10,11 @@ public class Weapon_Shotgun : Weapon_Base
         Fire();
     }
 
-    protected override void Shoot()
+    protected override void ShootRaycast()
     {
-        for (int i = 0; i < m_data.m_bulletsPerShoot; i++)
+        for (int i = 0; i < m_data.m_options.m_bulletsPerShoot; i++)
         {
-            base.Shoot();
+            base.ShootRaycast();
         }
     }
 }

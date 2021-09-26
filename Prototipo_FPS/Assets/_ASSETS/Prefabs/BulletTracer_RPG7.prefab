@@ -7,16 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6475914863713715152, guid: 73ed915420620f14aaf1372978d78f46,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.78431374
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475914863713715152, guid: 73ed915420620f14aaf1372978d78f46,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.78431374
-      objectReference: {fileID: 0}
     - target: {fileID: 6560674074230808950, guid: 73ed915420620f14aaf1372978d78f46,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,25 +62,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6560674074230808950, guid: 73ed915420620f14aaf1372978d78f46,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560674074230808950, guid: 73ed915420620f14aaf1372978d78f46,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560674074230808950, guid: 73ed915420620f14aaf1372978d78f46,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 6564412179768253600, guid: 73ed915420620f14aaf1372978d78f46,
         type: 3}
       propertyPath: m_Name
-      value: BulletTracer_M1014
+      value: BulletTracer_RPG7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ed915420620f14aaf1372978d78f46, type: 3}

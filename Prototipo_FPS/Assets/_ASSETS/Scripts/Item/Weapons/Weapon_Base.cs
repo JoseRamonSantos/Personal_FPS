@@ -66,8 +66,8 @@ public abstract class Weapon_Base : Item_Base
     /*PROPERTIES*/
     public E_WEAPON_STATE CrntState { get => m_crntState; }
     public bool CanShoot { get => m_canShoot; }
-    public bool HasChamber { get => m_data.m_hasChamber; }
-    public bool HasInstantReload { get => m_data.m_hasInstantReload; }
+    public bool HasChamber { get => m_data.m_options.m_hasChamber; }
+    public bool HasInstantReload { get => m_data.m_options.m_hasInstantReload; }
     public int ClipAmmo { get => m_data.m_clipAmmo; }
     public int CrntAmmo
     {
@@ -90,8 +90,9 @@ public abstract class Weapon_Base : Item_Base
     public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0, 60 / FireRate); }
     public float FireRate { get => m_data.m_fireRate; }
     public float CrntAcc { get => m_crntAcc; set => m_crntAcc = Mathf.Clamp(value, 0, 100); }
-    public float AccRecoverDelay { get => m_data.m_accuracyRecoverDelay; }
+    public float AccRecoverDelay { get => m_data.m_accuracy.m_accuracyRecoverDelay; }
     public float CrntAccRecoverDelay { get => m_crntAccRecoverDelay; set => m_crntAccRecoverDelay = Mathf.Clamp(value, 0, AccRecoverDelay); }
+    public float AccRecoverPerSecond { get => m_data.m_accuracy.m_accuracyRecoverPerSecond; }
     public Animator CmpAnimator { get => m_cmpAnimator; }
     public Camera MainCamera { get => m_cmpWController.MainCamera; }
     public Camera WeaponCamera { get => m_cmpWController.WeaponCamera; }
@@ -131,11 +132,11 @@ public abstract class Weapon_Base : Item_Base
             }
         }
 
-        CrntAcc = m_data.m_accuracy;
+        CrntAcc = m_data.m_accuracy.m_accuracy;
 
         TotalAmmo = m_data.m_totalAmmo;
 
-        if (m_data.m_hasChamber)
+        if (HasChamber)
         {
             CrntAmmo = ClipAmmo + 1;
         }
@@ -168,6 +169,25 @@ public abstract class Weapon_Base : Item_Base
         RecoilRecover();
     }
 
+    protected void PlaySound(AudioClip _aClip, float _volume = 1)
+    {
+        if (m_cmpAudioSource && _aClip)
+        {
+            m_cmpAudioSource.PlayOneShot(_aClip, _volume);
+        }
+        else
+        {
+            if (!m_cmpAudioSource)
+            {
+                Debug.LogError(transform.name + " MISSING AudioSource");
+            }
+            else
+            {
+                Debug.LogError(transform.name + " MISSING AudioClip");
+            }
+        }
+    }
+
     protected override void TakeItem(Char_Base _char)
     {
 
@@ -180,7 +200,7 @@ public abstract class Weapon_Base : Item_Base
 
         if (CrntAccRecoverDelay == 0)
         {
-            CrntAcc += m_data.m_accuracyRecoverPerSecond * Time.deltaTime;
+            CrntAcc += AccRecoverPerSecond * Time.deltaTime;
         }
     }
 
@@ -191,41 +211,45 @@ public abstract class Weapon_Base : Item_Base
 
     private void RecoilRecover()
     {
-        m_crntRecoil1 = Vector3.Lerp(m_crntRecoil1, Vector3.zero, m_data.m_recoil1 * Time.deltaTime);
-        m_crntRecoil2 = Vector3.Lerp(m_crntRecoil2, m_crntRecoil1, m_data.m_recoil2 * Time.deltaTime);
-        m_crntRecoil3 = Vector3.Lerp(m_crntRecoil3, Vector3.zero, m_data.m_recoil3 * Time.deltaTime);
-        m_crntRecoil4 = Vector3.Lerp(m_crntRecoil4, m_crntRecoil3, m_data.m_recoil4 * Time.deltaTime);
+        WeaponItem.RecoilSettings rSettings = m_data.m_recoilSettings;
 
-        m_recoilPositionTranform.localPosition = Vector3.Slerp(m_recoilPositionTranform.localPosition, m_crntRecoil3, m_data.m_positionDampTime * Time.fixedDeltaTime);
-        m_rotationOutput = Vector3.Slerp(m_rotationOutput, m_crntRecoil1, m_data.m_rotationDampTime * Time.fixedDeltaTime);
+        m_crntRecoil1 = Vector3.Lerp(m_crntRecoil1, Vector3.zero, rSettings.m_recoil1 * Time.deltaTime);
+        m_crntRecoil2 = Vector3.Lerp(m_crntRecoil2, m_crntRecoil1, rSettings.m_recoil2 * Time.deltaTime);
+        m_crntRecoil3 = Vector3.Lerp(m_crntRecoil3, Vector3.zero, rSettings.m_recoil3 * Time.deltaTime);
+        m_crntRecoil4 = Vector3.Lerp(m_crntRecoil4, m_crntRecoil3, rSettings.m_recoil4 * Time.deltaTime);
+
+        m_recoilPositionTranform.localPosition = Vector3.Slerp(m_recoilPositionTranform.localPosition, m_crntRecoil3, rSettings.m_positionDampTime * Time.fixedDeltaTime);
+        m_rotationOutput = Vector3.Slerp(m_rotationOutput, m_crntRecoil1, rSettings.m_rotationDampTime * Time.fixedDeltaTime);
         m_recoilRotationTranform.localRotation = Quaternion.Euler(m_rotationOutput);
     }
 
     public void AddRecoil()
     {
+        WeaponItem.RecoilSettings rSettings = m_data.m_recoilSettings;
+
         if (aim == true)
         {
             m_crntRecoil1 += new Vector3(
-                m_data.m_recoilRotation_Aim.x,
-                Random.Range(-m_data.m_recoilRotation_Aim.y, m_data.m_recoilRotation_Aim.y),
-                Random.Range(-m_data.m_recoilRotation_Aim.z, m_data.m_recoilRotation_Aim.z));
+                rSettings.m_recoilRotation_Aim.x,
+                Random.Range(-rSettings.m_recoilRotation_Aim.y, rSettings.m_recoilRotation_Aim.y),
+                Random.Range(-rSettings.m_recoilRotation_Aim.z, rSettings.m_recoilRotation_Aim.z));
 
             m_crntRecoil3 += new Vector3(Random.Range(
-                -m_data.m_recoilKickBack_Aim.x, m_data.m_recoilKickBack_Aim.x),
-                Random.Range(-m_data.m_recoilKickBack_Aim.y, m_data.m_recoilKickBack_Aim.y),
-                m_data.m_recoilKickBack_Aim.z);
+                -rSettings.m_recoilKickBack_Aim.x, rSettings.m_recoilKickBack_Aim.x),
+                Random.Range(-rSettings.m_recoilKickBack_Aim.y, rSettings.m_recoilKickBack_Aim.y),
+                rSettings.m_recoilKickBack_Aim.z);
         }
         if (aim == false)
         {
             m_crntRecoil1 += new Vector3(
-                m_data.m_recoilRotation.x,
-                Random.Range(-m_data.m_recoilRotation.y, m_data.m_recoilRotation.y),
-                Random.Range(-m_data.m_recoilRotation.z, m_data.m_recoilRotation.z));
+                rSettings.m_recoilRotation.x,
+                Random.Range(-rSettings.m_recoilRotation.y, rSettings.m_recoilRotation.y),
+                Random.Range(-rSettings.m_recoilRotation.z, rSettings.m_recoilRotation.z));
 
             m_crntRecoil3 += new Vector3(
-                Random.Range(-m_data.m_recoilKickBack.x, m_data.m_recoilKickBack.x),
-                Random.Range(-m_data.m_recoilKickBack.y, m_data.m_recoilKickBack.y),
-                m_data.m_recoilKickBack.z);
+                Random.Range(-rSettings.m_recoilKickBack.x, rSettings.m_recoilKickBack.x),
+                Random.Range(-rSettings.m_recoilKickBack.y, rSettings.m_recoilKickBack.y),
+                rSettings.m_recoilKickBack.z);
         }
     }
     #endregion
@@ -235,7 +259,7 @@ public abstract class Weapon_Base : Item_Base
     {
         m_triggerIsPullled = true;
 
-        m_cmpAudioSource.PlayOneShot(m_data.m_triggerSound, 1);
+        PlaySound(m_data.m_soundClips.m_triggerSound);
     }
 
     public void ReleaseTrigger()
@@ -301,9 +325,9 @@ public abstract class Weapon_Base : Item_Base
 
         float distance = (_target.transform.position - transform.position).magnitude;
 
-        float cPoint = Mathf.Clamp(distance / m_data.m_maxRange, 0, 1);
+        float dPercent = Mathf.Clamp(distance / m_data.m_maxRange, 0, 1);
 
-        float damageReducionPercent = m_data.m_distanceDamageReduction.Evaluate(cPoint);
+        float damageReducionPercent = m_data.m_options.m_distanceDamageReduction.Evaluate(dPercent);
 
         damage = Mathf.RoundToInt(damage * damageReducionPercent);
 
@@ -323,9 +347,9 @@ public abstract class Weapon_Base : Item_Base
         return damage;
     }
 
-    protected void DoDamage(Char_Base _char, E_HITBOX_PART _hPart)
+    protected void DoDamage(Char_Base _target, E_HITBOX_PART _hPart)
     {
-        _char.ReceiveDamage(CalculateDamage(_char, _hPart));
+        m_owner.DoDamage(_target, CalculateDamage(_target, _hPart));
     }
     #endregion
 
@@ -336,7 +360,7 @@ public abstract class Weapon_Base : Item_Base
 
         m_cmpAnimator.Play("Fire", 0, 0f);
 
-        m_cmpAudioSource.PlayOneShot(m_data.m_fireSound, 0.25f);
+        PlaySound(m_data.m_soundClips.m_fireSound, 0.25f);
 
         ResetFireRate();
 
@@ -349,12 +373,47 @@ public abstract class Weapon_Base : Item_Base
             m_muzzleFlash.Play();
         }
 
-        Shoot();
+        if (m_data.m_options.m_instantiateProjectile)
+        {
+            ShootProjectile();
+        }
+        else
+        {
+            ShootRaycast();
+        }
 
         AddRecoil();
     }
 
-    protected virtual void Shoot()
+    protected virtual void ShootProjectile()
+    {
+        Projectile_Base cmpProjectile;
+
+        if (m_data.m_options.m_pfProjectile)
+        {
+            Ray ray = GetShootRay();
+            Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
+
+            GameObject goProjectile = Instantiate(m_data.m_options.m_pfProjectile, m_shootSpot.transform.position, Quaternion.LookRotation(ray.direction));
+
+            if (goProjectile.TryGetComponent(out cmpProjectile))
+            {
+                cmpProjectile.Activate(m_owner, m_data.m_damage, m_data.m_maxRange, m_data.m_options.m_distanceDamageReduction);
+                Debug.Log(transform.name + " INSTANTIATE PROJECTILE " + cmpProjectile.name);
+            }
+            else
+            {
+                Debug.LogError(transform.name + " INVALID PROJECTILE. Projectile has been destroyed");
+                Destroy(goProjectile);
+            }
+        }
+        else
+        {
+            Debug.LogError(transform.name + " MISSING PROJECTILE");
+        }
+    }
+
+    protected virtual void ShootRaycast()
     {
         RaycastHit rHit;
         Vector3 destination;
@@ -413,7 +472,7 @@ public abstract class Weapon_Base : Item_Base
         m_shootDir.z += Random.Range(-accuracyModifier, accuracyModifier);
 
 
-        CrntAcc -= m_data.m_accuracyDropPerShot;
+        CrntAcc -= m_data.m_accuracy.m_accuracyDropPerShot;
 
         CrntAcc = Mathf.Clamp(CrntAcc, 0, 100);
 
@@ -467,20 +526,20 @@ public abstract class Weapon_Base : Item_Base
             {
                 m_cmpAnimator.Play("ReloadAmmoLeft", 0, 0);
 
-                m_cmpAudioSource.PlayOneShot(m_data.m_reloadAmmoLeftSound);
+                PlaySound(m_data.m_soundClips.m_reloadAmmoLeftSound);
             }
             else
             {
                 m_cmpAnimator.Play("ReloadOutOfAmmo", 0, 0);
 
-                m_cmpAudioSource.PlayOneShot(m_data.m_reloadOutOfAmmoSound);
+                PlaySound(m_data.m_soundClips.m_reloadOutOfAmmoSound);
             }
         }
         else
         {
             m_cmpAnimator.Play("Reload", 0, 0f);
 
-            m_cmpAudioSource.PlayOneShot(m_data.m_reload);
+            PlaySound(m_data.m_soundClips.m_reload);
         }
     }
 
@@ -530,7 +589,7 @@ public abstract class Weapon_Base : Item_Base
     //Anim Event
     protected void StartInsert()
     {
-        m_cmpAudioSource.PlayOneShot(m_data.m_reloadInsert);
+        PlaySound(m_data.m_soundClips.m_reloadInsert);
     }
 
     protected void IncrementReload()
@@ -543,7 +602,8 @@ public abstract class Weapon_Base : Item_Base
         if (CrntAmmo == ClipAmmo || TotalAmmo == 0)
         {
             CmpAnimator.SetTrigger("EndReload");
-            m_cmpAudioSource.PlayOneShot(m_data.m_reloadClose);
+
+            PlaySound(m_data.m_soundClips.m_reloadClose);
         }
     }
 
@@ -577,7 +637,7 @@ public abstract class Weapon_Base : Item_Base
     #endregion
 
     #region HOLSTER & DRAW
-    public void Holster()
+    /*public void Holster()
     {
         if (m_crntState != E_WEAPON_STATE.HOLSTERING)
         {
@@ -589,7 +649,7 @@ public abstract class Weapon_Base : Item_Base
 
             StartDraw();
         }
-    }
+    }*/
 
     public void StartHolster()
     {
@@ -599,17 +659,19 @@ public abstract class Weapon_Base : Item_Base
         //m_cmpAnimator.SetBool("Holster", true);
         m_cmpAnimator.Play("Holster", 0, 0);
 
-        m_cmpAudioSource.PlayOneShot(m_data.m_holsterSound);
+        PlaySound(m_data.m_soundClips.m_holsterSound);
     }
 
-    public void CancelHolster()
+    /*public void CancelHolster()
     {
         Debug.LogWarning("CANCEL HOLSTER");
         m_crntState = E_WEAPON_STATE.DEFAULT;
         //m_cmpAnimator.SetBool("Holster", false);
 
         m_cmpAudioSource.Stop();
-    }
+
+        StartDraw();
+    }*/
 
     public void StartDraw()
     {
@@ -617,7 +679,7 @@ public abstract class Weapon_Base : Item_Base
         m_crntState = E_WEAPON_STATE.DRAWING;
         m_cmpAnimator.Play("Draw", 0, 0);
 
-        m_cmpAudioSource.PlayOneShot(m_data.m_drawSound);
+        PlaySound(m_data.m_soundClips.m_drawSound);
     }
 
     //Anim Event

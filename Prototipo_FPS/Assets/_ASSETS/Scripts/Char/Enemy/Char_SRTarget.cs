@@ -8,6 +8,6 @@ public class Char_SRTarget : Char_Enemy
     {
         base.Die();
         GameManager.Instance.RemoveEnemy();
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
