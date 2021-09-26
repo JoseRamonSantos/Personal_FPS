@@ -134,7 +134,6 @@ public abstract class Projectile_Base : MonoBehaviour
 
         dmg = Mathf.RoundToInt(dmg * dDmgReductionPercent);
 
-        Debug.Log("----- " + _target.transform.name + " ----> " + dDmgReductionPercent + " // " + dmg);
         return dmg;
     }
 
