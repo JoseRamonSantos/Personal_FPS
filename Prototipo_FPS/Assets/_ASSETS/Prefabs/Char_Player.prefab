@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 652541016001302575}
   - component: {fileID: 652541016001302570}
   - component: {fileID: 8529803211677023369}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Char_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,20 +734,18 @@ MonoBehaviour:
   m_weaponName: M1014
   m_data:
     m_name: 
-    m_itemType: 1
+    m_wType: 1
     m_damage: 50
     m_fireRate: 60
     m_maxRange: 9999
     m_totalAmmo: 150
     m_clipAmmo: 30
     m_accuracy:
-      m_accuracy: 100
       m_accuracyDropPerShot: 3
       m_accuracyRecoverPerSecond: 50
       m_accuracyRecoverDelay: 0.2
     m_options:
       m_bulletsPerShoot: 5
-      m_bulletsPerBurst: 3
       m_distanceDamageReduction:
         serializedVersion: 2
         m_Curve:
@@ -774,8 +772,11 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
-      m_instantiateProjectile: 0
+      m_projectile: 0
       m_pfProjectile: {fileID: 0}
+      m_bulletTracer: {fileID: 0}
+      m_bulletShell: 0
+      m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
       m_positionDampTime: 6
       m_rotationDampTime: 9
@@ -787,19 +788,17 @@ MonoBehaviour:
       m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
       m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
       m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_bulletShell: {fileID: 0}
-    m_bulletTracer: {fileID: 0}
     m_soundClips:
-      m_triggerSound: {fileID: 0}
       m_fireSound: {fileID: 0}
+      m_triggerSound: {fileID: 0}
       m_bulletShellSound: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
       m_reloadAmmoLeftSound: {fileID: 0}
       m_reloadOutOfAmmoSound: {fileID: 0}
       m_reload: {fileID: 0}
       m_reloadInsert: {fileID: 0}
       m_reloadClose: {fileID: 0}
-      m_holsterSound: {fileID: 0}
-      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0
@@ -3218,20 +3217,18 @@ MonoBehaviour:
   m_weaponName: Glock
   m_data:
     m_name: 
-    m_itemType: 1
+    m_wType: 1
     m_damage: 50
     m_fireRate: 60
     m_maxRange: 9999
     m_totalAmmo: 150
     m_clipAmmo: 30
     m_accuracy:
-      m_accuracy: 100
       m_accuracyDropPerShot: 3
       m_accuracyRecoverPerSecond: 50
       m_accuracyRecoverDelay: 0.2
     m_options:
       m_bulletsPerShoot: 5
-      m_bulletsPerBurst: 3
       m_distanceDamageReduction:
         serializedVersion: 2
         m_Curve:
@@ -3258,8 +3255,11 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
-      m_instantiateProjectile: 0
+      m_projectile: 0
       m_pfProjectile: {fileID: 0}
+      m_bulletTracer: {fileID: 0}
+      m_bulletShell: 0
+      m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
       m_positionDampTime: 6
       m_rotationDampTime: 9
@@ -3271,19 +3271,17 @@ MonoBehaviour:
       m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
       m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
       m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_bulletShell: {fileID: 0}
-    m_bulletTracer: {fileID: 0}
     m_soundClips:
-      m_triggerSound: {fileID: 0}
       m_fireSound: {fileID: 0}
+      m_triggerSound: {fileID: 0}
       m_bulletShellSound: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
       m_reloadAmmoLeftSound: {fileID: 0}
       m_reloadOutOfAmmoSound: {fileID: 0}
       m_reload: {fileID: 0}
       m_reloadInsert: {fileID: 0}
       m_reloadClose: {fileID: 0}
-      m_holsterSound: {fileID: 0}
-      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0
@@ -6662,20 +6660,18 @@ MonoBehaviour:
   m_weaponName: Ak47
   m_data:
     m_name: 
-    m_itemType: 1
+    m_wType: 1
     m_damage: 50
     m_fireRate: 60
     m_maxRange: 9999
     m_totalAmmo: 150
     m_clipAmmo: 30
     m_accuracy:
-      m_accuracy: 100
       m_accuracyDropPerShot: 3
       m_accuracyRecoverPerSecond: 50
       m_accuracyRecoverDelay: 0.2
     m_options:
       m_bulletsPerShoot: 5
-      m_bulletsPerBurst: 3
       m_distanceDamageReduction:
         serializedVersion: 2
         m_Curve:
@@ -6702,8 +6698,11 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
-      m_instantiateProjectile: 0
+      m_projectile: 0
       m_pfProjectile: {fileID: 0}
+      m_bulletTracer: {fileID: 0}
+      m_bulletShell: 0
+      m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
       m_positionDampTime: 6
       m_rotationDampTime: 9
@@ -6715,19 +6714,17 @@ MonoBehaviour:
       m_recoilKickBack: {x: 0.2, y: 0.2, z: -0.3}
       m_recoilRotation_Aim: {x: 0, y: 0, z: 0}
       m_recoilKickBack_Aim: {x: 0, y: 0, z: 0}
-    m_bulletShell: {fileID: 0}
-    m_bulletTracer: {fileID: 0}
     m_soundClips:
-      m_triggerSound: {fileID: 0}
       m_fireSound: {fileID: 0}
+      m_triggerSound: {fileID: 0}
       m_bulletShellSound: {fileID: 0}
+      m_holsterSound: {fileID: 0}
+      m_drawSound: {fileID: 0}
       m_reloadAmmoLeftSound: {fileID: 0}
       m_reloadOutOfAmmoSound: {fileID: 0}
       m_reload: {fileID: 0}
       m_reloadInsert: {fileID: 0}
       m_reloadClose: {fileID: 0}
-      m_holsterSound: {fileID: 0}
-      m_drawSound: {fileID: 0}
   m_shootSpot: {fileID: 0}
   m_muzzleFlash: {fileID: 0}
   m_crntState: 0

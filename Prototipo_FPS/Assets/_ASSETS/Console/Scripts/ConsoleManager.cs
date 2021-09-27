@@ -65,6 +65,18 @@ public class ConsoleManager : MonoBehaviour
         cMessage.AddText(damage.ToString(), "red", true);
         cMessage.AddText("(" + _hPart + " - " + _distance.ToString("F0") + "m)");
     }
+    public void AddPlayerCauseDamageMessage(Char_Base _sender, Char_Base _receiver, int damage, float _distance)
+    {
+        ConsoleMessage cMessage = NewMessage();
+
+        cMessage.ResetText();
+        cMessage.AddText(_sender.transform.name.ToString(), "green", false, true);
+        cMessage.AddText(": damage given to");
+        cMessage.AddText(_receiver.transform.name.ToString(), "red".ToString(), false, true);
+        cMessage.AddText(":");
+        cMessage.AddText(damage.ToString(), "red", true);
+        cMessage.AddText("(" + _distance.ToString("F0") + "m)");
+    }
 
 
     private ConsoleMessage NewMessage()

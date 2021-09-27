@@ -78,6 +78,20 @@ public class Char_Player : Char_Base
         m_cmpWController.enabled = false;
     }
 
+    public override void DoDamage(Char_Base _target, int _dmg)
+    {
+        base.DoDamage(_target, _dmg);
+
+        ConsoleManager.Instance.AddPlayerCauseDamageMessage(this, _target, _dmg, (_target.transform.position - transform.position).magnitude);
+    }
+
+    public override void DoDamage(Char_Base _target, int _dmg, E_HITBOX_PART _hPart)
+    {
+        base.DoDamage(_target, _dmg, _hPart);
+
+        ConsoleManager.Instance.AddPlayerCauseDamageMessage(this, _target, _dmg, _hPart, (_target.transform.position - transform.position).magnitude);
+    }
+
     public override void ReceiveDamage(int _damage)
     {
         base.ReceiveDamage(_damage);

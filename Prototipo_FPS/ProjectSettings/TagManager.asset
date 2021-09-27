@@ -16,7 +16,7 @@ TagManager:
   - 
   - PlayerBody
   - PlayerWeapon
-  - Enemy
+  - Char
   - Hitbox
   - None
   - 

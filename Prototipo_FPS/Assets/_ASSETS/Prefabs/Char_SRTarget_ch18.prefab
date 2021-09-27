@@ -2196,7 +2196,7 @@ GameObject:
   - component: {fileID: 1064122811827973150}
   - component: {fileID: 793732780558466746}
   - component: {fileID: 9087386485514198034}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Char_SRTarget_ch18
   m_TagString: Untagged
   m_Icon: {fileID: 0}

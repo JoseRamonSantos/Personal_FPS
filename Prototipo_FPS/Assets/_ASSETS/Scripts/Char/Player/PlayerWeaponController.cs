@@ -159,6 +159,18 @@ public class PlayerWeaponController : MonoBehaviour
         {
             ToCustomWeapon(3);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ToCustomWeapon(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ToCustomWeapon(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ToCustomWeapon(6);
+        }
 
         if (Input.mouseScrollDelta.y > 0)
         {
@@ -192,16 +204,16 @@ public class PlayerWeaponController : MonoBehaviour
     {
         int iNWeapon;
 
-        if (m_iCrntWeapon + 1 < m_weaponsList.Length)
+        if (m_iNextWeapon + 1 < m_weaponsList.Length)
         {
-            iNWeapon = m_iCrntWeapon + 1;
+            iNWeapon = m_iNextWeapon + 1;
         }
         else
         {
             iNWeapon = 0;
         }
 
-        if (iNWeapon == m_iCrntWeapon) { return; }
+        if (iNWeapon == m_iNextWeapon) { return; }
 
         ToCustomWeapon(iNWeapon);
     }
@@ -210,18 +222,18 @@ public class PlayerWeaponController : MonoBehaviour
     {
         int iPWeapon;
 
-        if (m_iCrntWeapon - 1 >= 0)
+        if (m_iNextWeapon - 1 >= 0)
         {
-            iPWeapon = m_iCrntWeapon - 1;
+            iPWeapon = m_iNextWeapon - 1;
         }
         else
         {
-            if (m_iCrntWeapon == m_weaponsList.Length - 1) { return; }
+            if (m_iNextWeapon == m_weaponsList.Length - 1) { return; }
 
             iPWeapon = m_weaponsList.Length - 1;
         }
 
-        if (iPWeapon == m_iCrntWeapon) { return; }
+        if (iPWeapon == m_iNextWeapon) { return; }
 
         ToCustomWeapon(iPWeapon);
     }

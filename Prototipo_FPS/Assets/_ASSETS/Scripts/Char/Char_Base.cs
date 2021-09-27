@@ -47,6 +47,11 @@ public class Char_Base : MonoBehaviour
         _target.ReceiveDamage(_dmg);
     }
 
+    public virtual void DoDamage(Char_Base _target, int _dmg, E_HITBOX_PART _part)
+    {
+        _target.ReceiveDamage(_dmg);
+    }
+
     public virtual void ReceiveDamage(int _damage)
     {
         if (m_isDead) { return; }

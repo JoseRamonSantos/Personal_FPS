@@ -1,12 +1,4 @@
 ﻿
-public enum E_WEAPON_TYPE
-{
-    FULL_AUTO,
-    SEMI_AUTO,
-    BURST,
-    SHOTGUN
-}
-
 public enum E_WEAPON_STATE
 {
     DEFAULT,
@@ -15,10 +7,19 @@ public enum E_WEAPON_STATE
     DRAWING
 }
 
-public enum E_ITEM_TYPE
+public enum E_FIRE_MODE
 {
-    PRIMARY_WEAPON,
-    SECONDARY_WEAPON
+    FULL_AUTO,
+    BURST,
+    SEMI_AUTO
+}
+
+public enum E_WEAPON_TYPE
+{
+    RIFLE,
+    PISTOL,
+    SHOTGUN,
+    LAUNCHER
 }
 
 public enum E_HITBOX_PART

@@ -88,7 +88,7 @@ public abstract class Weapon_Base : Item_Base
     }
     public int TotalAmmo { get => m_totalAmmo; set => m_totalAmmo = Mathf.Clamp(value, 0, int.MaxValue); }
     public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0, 60 / FireRate); }
-    public float FireRate { get => m_data.m_fireRate; }
+    public int FireRate { get => m_data.m_fireRate; }
     public float CrntAcc { get => m_crntAcc; set => m_crntAcc = Mathf.Clamp(value, 0, 100); }
     public float AccRecoverDelay { get => m_data.m_accuracy.m_accuracyRecoverDelay; }
     public float CrntAccRecoverDelay { get => m_crntAccRecoverDelay; set => m_crntAccRecoverDelay = Mathf.Clamp(value, 0, AccRecoverDelay); }
@@ -132,7 +132,7 @@ public abstract class Weapon_Base : Item_Base
             }
         }
 
-        CrntAcc = m_data.m_accuracy.m_accuracy;
+        CrntAcc = 100;
 
         TotalAmmo = m_data.m_totalAmmo;
 
@@ -331,12 +331,6 @@ public abstract class Weapon_Base : Item_Base
 
         damage = Mathf.RoundToInt(damage * damageReducionPercent);
 
-        //CONSOLE MESSAGE
-        if (m_owner is Char_Player)
-        {
-            ConsoleManager.Instance.AddPlayerCauseDamageMessage(m_owner, _target, damage, _hPart, distance);
-        }
-
         /*Debug.Log("------------------------------------");
         Debug.Log("Distance = " + charDistance);
         Debug.Log("Curve Point = " + cPoint + " (" + charDistance / m_data.m_maxRange + ")");
@@ -349,7 +343,7 @@ public abstract class Weapon_Base : Item_Base
 
     protected void DoDamage(Char_Base _target, E_HITBOX_PART _hPart)
     {
-        m_owner.DoDamage(_target, CalculateDamage(_target, _hPart));
+        m_owner.DoDamage(_target, CalculateDamage(_target, _hPart), _hPart);
     }
     #endregion
 
@@ -373,7 +367,7 @@ public abstract class Weapon_Base : Item_Base
             m_muzzleFlash.Play();
         }
 
-        if (m_data.m_options.m_instantiateProjectile)
+        if (m_data.m_options.m_projectile)
         {
             ShootProjectile();
         }
@@ -454,7 +448,7 @@ public abstract class Weapon_Base : Item_Base
             destination = m_shootDir * m_data.m_maxRange;
         }
 
-        if (m_data.m_bulletTracer)
+        if (m_data.m_options.m_bulletTracer)
         {
             BulletTracer(destination);
         }
@@ -492,7 +486,7 @@ public abstract class Weapon_Base : Item_Base
 
         Debug.DrawLine(shootPos, m_shootDir, Color.magenta, 10f);
 
-        BulletTracer bulletTracer = Instantiate(m_data.m_bulletTracer, shootPos, Quaternion.identity).GetComponent<BulletTracer>();
+        BulletTracer bulletTracer = Instantiate(m_data.m_options.m_bulletTracer, shootPos, Quaternion.identity).GetComponent<BulletTracer>();
 
         bulletTracer.Init(_destination);
     }

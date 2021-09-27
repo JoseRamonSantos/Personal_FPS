@@ -81,6 +81,7 @@ public abstract class Projectile_Base : MonoBehaviour
 
     public void Activate(Char_Base _owner, int _maxDamage, int _maxRange, AnimationCurve _dDmgReduction)
     {
+        m_owner = _owner;
         m_maxDamage = _maxDamage;
         m_maxRange = _maxRange;
         m_distanceDamageReduction = _dDmgReduction;
@@ -109,10 +110,12 @@ public abstract class Projectile_Base : MonoBehaviour
             {
                 if (m_owner)
                 {
+                    Debug.Log("-----> " + 0);
                     m_owner.DoDamage(target, CalculateEsplosionDmg(target));
                 }
                 else
                 {
+                    Debug.Log("-----> " + 1);
                     target.ReceiveDamage(CalculateEsplosionDmg(target));
                 }
             }
