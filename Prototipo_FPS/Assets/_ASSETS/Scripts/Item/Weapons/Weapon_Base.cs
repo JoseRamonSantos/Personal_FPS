@@ -26,11 +26,13 @@ public abstract class Weapon_Base : Item_Base
     protected ParticleSystem m_muzzleFlash = null;
 
     protected bool m_isMoving = false;
+    [SerializeField]
     protected bool m_canShoot = false;
 
     [SerializeField]
     protected E_WEAPON_STATE m_crntState = E_WEAPON_STATE.DEFAULT;
 
+    [SerializeField]
     protected float m_crntFireRate = 0;
 
     [SerializeField]
@@ -60,6 +62,7 @@ public abstract class Weapon_Base : Item_Base
     protected int m_crntAmmo = 0;
     protected int m_totalAmmo = 0;
 
+    [SerializeField]
     protected bool m_triggerIsPullled = false;
 
 
@@ -87,11 +90,11 @@ public abstract class Weapon_Base : Item_Base
         }
     }
     public int TotalAmmo { get => m_totalAmmo; set => m_totalAmmo = Mathf.Clamp(value, 0, int.MaxValue); }
-    public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0, 60 / FireRate); }
+    public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0f, 60f / FireRate); }
     public int FireRate { get => m_data.m_fireRate; }
-    public float CrntAcc { get => m_crntAcc; set => m_crntAcc = Mathf.Clamp(value, 0, 100); }
+    public float CrntAcc { get => m_crntAcc; set => m_crntAcc = Mathf.Clamp(value, 0f, 100f); }
     public float AccRecoverDelay { get => m_data.m_accuracy.m_accuracyRecoverDelay; }
-    public float CrntAccRecoverDelay { get => m_crntAccRecoverDelay; set => m_crntAccRecoverDelay = Mathf.Clamp(value, 0, AccRecoverDelay); }
+    public float CrntAccRecoverDelay { get => m_crntAccRecoverDelay; set => m_crntAccRecoverDelay = Mathf.Clamp(value, 0f, AccRecoverDelay); }
     public float AccRecoverPerSecond { get => m_data.m_accuracy.m_accuracyRecoverPerSecond; }
     public Animator CmpAnimator { get => m_cmpAnimator; }
     public Camera MainCamera { get => m_cmpWController.MainCamera; }
@@ -280,22 +283,19 @@ public abstract class Weapon_Base : Item_Base
     {
         if (CanShoot) { return; }
 
-        if (CrntFireRate > 0)
-        {
-            CrntFireRate -= Time.deltaTime;
+        CrntFireRate -= Time.deltaTime;
 
-            if (CrntFireRate <= 0)
-            {
-                m_canShoot = true;
-            }
+        if (CrntFireRate <= 0)
+        {
+            m_canShoot = true;
         }
     }
 
     protected void ResetFireRate()
     {
         m_canShoot = false;
-        CrntFireRate = 60 / FireRate;
-
+        CrntFireRate = 60f / FireRate;
+        Debug.Log("------------- " + CrntFireRate + " // " + 60f / FireRate + " (" + FireRate + ")");
     }
     #endregion
 

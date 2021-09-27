@@ -57,7 +57,7 @@ MonoBehaviour:
   m_spawnEnemies: 1
   m_spawnEnemiesList:
   - {fileID: 793732780558466746, guid: 638daff97baa2334c885461f203c1353, type: 3}
-  m_maxEnemies: 10
+  m_maxEnemies: 15
   m_timeToSpawn: 2
-  m_timeToSpawnDeviation: 0
+  m_timeToSpawnDeviation: 1
   m_spawnAreaList: []

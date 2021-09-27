@@ -73,6 +73,8 @@ public class WeaponEditor : EditorWindow
         EditorGUILayout.LabelField("Attributes", EditorStyles.boldLabel);
         wItem.m_damage = EditorGUILayout.IntField("Damage", wItem.m_damage);
         wItem.m_fireRate = EditorGUILayout.IntField("Fire rate", wItem.m_fireRate);
+        wItem.m_maxRange = EditorGUILayout.IntField("max range", wItem.m_maxRange);
+        GUILayout.Space(5);
         wItem.m_totalAmmo = EditorGUILayout.IntField("Init Ammo", wItem.m_totalAmmo);
         wItem.m_clipAmmo = EditorGUILayout.IntField("Clip Ammo", wItem.m_clipAmmo);
 
