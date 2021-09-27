@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponList:
   - m_name: Ak47
-    m_wType: 1
+    m_wType: 0
     m_damage: 50
-    m_fireRate: 60
+    m_fireRate: 500
     m_maxRange: 300
     m_totalAmmo: 150
     m_clipAmmo: 30
@@ -84,7 +84,7 @@ MonoBehaviour:
   - m_name: Glock
     m_wType: 1
     m_damage: 25
-    m_fireRate: 60
+    m_fireRate: 350
     m_maxRange: 100
     m_totalAmmo: 90
     m_clipAmmo: 9
@@ -152,7 +152,7 @@ MonoBehaviour:
   - m_name: M1014
     m_wType: 2
     m_damage: 15
-    m_fireRate: 60
+    m_fireRate: 65
     m_maxRange: 50
     m_totalAmmo: 36
     m_clipAmmo: 6
@@ -254,7 +254,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 0
       m_hasInstantReload: 1
-      m_projectile: 0
+      m_projectile: 1
       m_pfProjectile: {fileID: 3494266477271456502, guid: dbb31f7165d0afc47b10a2b8ebf9d4b2,
         type: 3}
       m_bulletTracer: {fileID: 0}
@@ -321,7 +321,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 0
       m_hasInstantReload: 1
-      m_projectile: 0
+      m_projectile: 1
       m_pfProjectile: {fileID: 3494266477271456502, guid: fde0c716d32985f4fbca55e3a164bd39,
         type: 3}
       m_bulletTracer: {fileID: 0}
