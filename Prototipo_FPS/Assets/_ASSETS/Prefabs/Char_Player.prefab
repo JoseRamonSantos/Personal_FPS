@@ -524,9 +524,10 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
+      m_bulletTracer: 0
+      m_pfBulletTracer: {fileID: 0}
       m_projectile: 0
       m_pfProjectile: {fileID: 0}
-      m_bulletTracer: {fileID: 0}
       m_bulletShell: 0
       m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
@@ -1869,9 +1870,10 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
+      m_bulletTracer: 0
+      m_pfBulletTracer: {fileID: 0}
       m_projectile: 0
       m_pfProjectile: {fileID: 0}
-      m_bulletTracer: {fileID: 0}
       m_bulletShell: 0
       m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
@@ -4385,9 +4387,10 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
+      m_bulletTracer: 0
+      m_pfBulletTracer: {fileID: 0}
       m_projectile: 0
       m_pfProjectile: {fileID: 0}
-      m_bulletTracer: {fileID: 0}
       m_bulletShell: 0
       m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
@@ -9705,9 +9708,10 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
+      m_bulletTracer: 0
+      m_pfBulletTracer: {fileID: 0}
       m_projectile: 0
       m_pfProjectile: {fileID: 0}
-      m_bulletTracer: {fileID: 0}
       m_bulletShell: 0
       m_pfBulletShell: {fileID: 0}
     m_recoilSettings:
@@ -11576,9 +11580,10 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_hasChamber: 1
       m_hasInstantReload: 1
+      m_bulletTracer: 0
+      m_pfBulletTracer: {fileID: 0}
       m_projectile: 0
       m_pfProjectile: {fileID: 0}
-      m_bulletTracer: {fileID: 0}
       m_bulletShell: 0
       m_pfBulletShell: {fileID: 0}
     m_recoilSettings:

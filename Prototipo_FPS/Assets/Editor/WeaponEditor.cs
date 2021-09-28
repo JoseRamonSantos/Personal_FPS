@@ -66,13 +66,13 @@ public class WeaponEditor : EditorWindow
 
         wItem.m_name = EditorGUILayout.TextField("Name", wItem.m_name as string);
         wItem.m_wType = (E_WEAPON_TYPE)EditorGUILayout.EnumPopup("Weapon type", wItem.m_wType);
-        
+
         GUILayout.Space(10);
         m_scrollView = EditorGUILayout.BeginScrollView(m_scrollView);
 
         EditorGUILayout.LabelField("Attributes", EditorStyles.boldLabel);
         wItem.m_damage = EditorGUILayout.IntField("Damage", wItem.m_damage);
-        wItem.m_fireRate = EditorGUILayout.IntField("Fire rate", wItem.m_fireRate);
+        wItem.m_fireRate = EditorGUILayout.FloatField("Fire rate", wItem.m_fireRate);
         wItem.m_maxRange = EditorGUILayout.IntField("max range", wItem.m_maxRange);
         GUILayout.Space(5);
         wItem.m_totalAmmo = EditorGUILayout.IntField("Init Ammo", wItem.m_totalAmmo);
@@ -92,19 +92,25 @@ public class WeaponEditor : EditorWindow
         GUILayout.Space(5);
         wItem.m_options.m_distanceDamageReduction = EditorGUILayout.CurveField("Damage reduction per distance", wItem.m_options.m_distanceDamageReduction);
         GUILayout.Space(5);
-        wItem.m_options.m_hasChamber = EditorGUILayout.Toggle("Has chamber", wItem.m_options.m_hasChamber);
-        wItem.m_options.m_hasInstantReload = EditorGUILayout.Toggle("Has instant reload", wItem.m_options.m_hasInstantReload);
+        wItem.m_options.m_hasChamber = EditorGUILayout.Toggle("Chamber", wItem.m_options.m_hasChamber);
+        wItem.m_options.m_hasInstantReload = EditorGUILayout.Toggle("Instant reload", wItem.m_options.m_hasInstantReload);
         GUILayout.Space(5);
-        wItem.m_options.m_projectile = EditorGUILayout.Toggle("Instantiate projectile", wItem.m_options.m_projectile);
-        if (wItem.m_options.m_projectile)
+        wItem.m_options.m_bulletTracer = EditorGUILayout.Toggle("Bullet tracer", wItem.m_options.m_bulletTracer);
+        if (wItem.m_options.m_bulletTracer)
         {
-            wItem.m_options.m_pfProjectile = (GameObject)EditorGUILayout.ObjectField("Projectile prefab", wItem.m_options.m_pfProjectile, typeof(GameObject), true);
+            wItem.m_options.m_pfBulletTracer= (GameObject)EditorGUILayout.ObjectField("Bullet tracer prefab", wItem.m_options.m_pfBulletTracer, typeof(GameObject), false);
         }
         GUILayout.Space(5);
-        wItem.m_options.m_bulletShell = EditorGUILayout.Toggle("Instantiate bullet shell", wItem.m_options.m_bulletShell);
+        wItem.m_options.m_projectile = EditorGUILayout.Toggle("Projectile", wItem.m_options.m_projectile);
+        if (wItem.m_options.m_projectile)
+        {
+            wItem.m_options.m_pfProjectile = (GameObject)EditorGUILayout.ObjectField("Projectile prefab", wItem.m_options.m_pfProjectile, typeof(GameObject), false);
+        }
+        GUILayout.Space(5);
+        wItem.m_options.m_bulletShell = EditorGUILayout.Toggle("Bullet shell", wItem.m_options.m_bulletShell);
         if (wItem.m_options.m_bulletShell)
         {
-            wItem.m_options.m_pfBulletShell = (GameObject)EditorGUILayout.ObjectField("Bullet shell prefab", wItem.m_options.m_pfBulletShell, typeof(GameObject), true);
+            wItem.m_options.m_pfBulletShell = (GameObject)EditorGUILayout.ObjectField("Bullet shell prefab", wItem.m_options.m_pfBulletShell, typeof(GameObject), false);
         }
 
         GUILayout.Space(10);
@@ -117,37 +123,37 @@ public class WeaponEditor : EditorWindow
         wItem.m_recoilSettings.m_recoil3 = EditorGUILayout.FloatField("Recoil 3", wItem.m_recoilSettings.m_recoil3);
         wItem.m_recoilSettings.m_recoil4 = EditorGUILayout.FloatField("Recoil 4", wItem.m_recoilSettings.m_recoil4);
         GUILayout.Space(5);
-        wItem.m_recoilSettings.m_recoilRotation= EditorGUILayout.Vector3Field("Recoil rotation", wItem.m_recoilSettings.m_recoilRotation);
-        wItem.m_recoilSettings.m_recoilKickBack= EditorGUILayout.Vector3Field("Recoil kick back", wItem.m_recoilSettings.m_recoilKickBack);
+        wItem.m_recoilSettings.m_recoilRotation = EditorGUILayout.Vector3Field("Recoil rotation", wItem.m_recoilSettings.m_recoilRotation);
+        wItem.m_recoilSettings.m_recoilKickBack = EditorGUILayout.Vector3Field("Recoil kick back", wItem.m_recoilSettings.m_recoilKickBack);
         //wItem.m_recoilSettings.m_recoilRotation_Aim= EditorGUILayout.Vector3Field("Recoil rotation (Aim)", wItem.m_recoilSettings.m_recoilRotation_Aim);
         //wItem.m_recoilSettings.m_recoilKickBack_Aim= EditorGUILayout.Vector3Field("Recoil kick back (Aim)", wItem.m_recoilSettings.m_recoilKickBack_Aim);
 
         GUILayout.Space(10);
         EditorGUILayout.LabelField("Sound clips", EditorStyles.boldLabel);
-        wItem.m_soundClips.m_fireSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_fireSound, typeof(AudioClip), true);
-        wItem.m_soundClips.m_triggerSound = (AudioClip)EditorGUILayout.ObjectField("Trigger sound", wItem.m_soundClips.m_triggerSound, typeof(AudioClip), true);
+        wItem.m_soundClips.m_fireSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_fireSound, typeof(AudioClip), false);
+        wItem.m_soundClips.m_triggerSound = (AudioClip)EditorGUILayout.ObjectField("Trigger sound", wItem.m_soundClips.m_triggerSound, typeof(AudioClip), false);
         if (wItem.m_options.m_bulletShell)
         {
-            wItem.m_soundClips.m_bulletShellSound = (AudioClip)EditorGUILayout.ObjectField("Bullet shell sound", wItem.m_soundClips.m_bulletShellSound, typeof(AudioClip), true);
+            wItem.m_soundClips.m_bulletShellSound = (AudioClip)EditorGUILayout.ObjectField("Bullet shell sound", wItem.m_soundClips.m_bulletShellSound, typeof(AudioClip), false);
         }
         GUILayout.Space(5);
-        wItem.m_soundClips.m_holsterSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_holsterSound, typeof(AudioClip), true);
-        wItem.m_soundClips.m_drawSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_drawSound, typeof(AudioClip), true);
+        wItem.m_soundClips.m_holsterSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_holsterSound, typeof(AudioClip), false);
+        wItem.m_soundClips.m_drawSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_drawSound, typeof(AudioClip), false);
         GUILayout.Space(5);
         if (wItem.m_options.m_hasChamber && wItem.m_options.m_hasInstantReload)
         {
-            wItem.m_soundClips.m_reloadAmmoLeftSound = (AudioClip)EditorGUILayout.ObjectField("Reload (Ammo left)", wItem.m_soundClips.m_reloadAmmoLeftSound, typeof(AudioClip), true);
-            wItem.m_soundClips.m_reloadOutOfAmmoSound = (AudioClip)EditorGUILayout.ObjectField("Reload (Out of ammo)", wItem.m_soundClips.m_reloadOutOfAmmoSound, typeof(AudioClip), true);
+            wItem.m_soundClips.m_reloadAmmoLeftSound = (AudioClip)EditorGUILayout.ObjectField("Reload (Ammo left)", wItem.m_soundClips.m_reloadAmmoLeftSound, typeof(AudioClip), false);
+            wItem.m_soundClips.m_reloadOutOfAmmoSound = (AudioClip)EditorGUILayout.ObjectField("Reload (Out of ammo)", wItem.m_soundClips.m_reloadOutOfAmmoSound, typeof(AudioClip), false);
         }
         else if (wItem.m_options.m_hasInstantReload && !wItem.m_options.m_hasChamber)
         {
-            wItem.m_soundClips.m_reload = (AudioClip)EditorGUILayout.ObjectField("Reload", wItem.m_soundClips.m_reload, typeof(AudioClip), true);
+            wItem.m_soundClips.m_reload = (AudioClip)EditorGUILayout.ObjectField("Reload", wItem.m_soundClips.m_reload, typeof(AudioClip), false);
         }
         else if (!wItem.m_options.m_hasInstantReload)
         {
-            wItem.m_soundClips.m_reload = (AudioClip)EditorGUILayout.ObjectField("Reload (Open)", wItem.m_soundClips.m_reload, typeof(AudioClip), true);
-            wItem.m_soundClips.m_reloadInsert= (AudioClip)EditorGUILayout.ObjectField("Reload (Insert)", wItem.m_soundClips.m_reloadInsert, typeof(AudioClip), true);
-            wItem.m_soundClips.m_reloadClose = (AudioClip)EditorGUILayout.ObjectField("Reload (Close)", wItem.m_soundClips.m_reloadClose, typeof(AudioClip), true);
+            wItem.m_soundClips.m_reload = (AudioClip)EditorGUILayout.ObjectField("Reload (Open)", wItem.m_soundClips.m_reload, typeof(AudioClip), false);
+            wItem.m_soundClips.m_reloadInsert = (AudioClip)EditorGUILayout.ObjectField("Reload (Insert)", wItem.m_soundClips.m_reloadInsert, typeof(AudioClip), false);
+            wItem.m_soundClips.m_reloadClose = (AudioClip)EditorGUILayout.ObjectField("Reload (Close)", wItem.m_soundClips.m_reloadClose, typeof(AudioClip), false);
 
         }
 

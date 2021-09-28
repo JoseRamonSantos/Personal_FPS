@@ -11,6 +11,11 @@ public class Projectile_Rocket : Projectile_Base
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (m_owner)
+        {
+            if (collision.transform.gameObject == m_owner.gameObject) { return; }
+        }
+
         Explode();
     }
 }

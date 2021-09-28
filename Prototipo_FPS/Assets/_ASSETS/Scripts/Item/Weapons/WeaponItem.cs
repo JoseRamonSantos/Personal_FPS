@@ -15,7 +15,7 @@ public class WeaponItem
     [Header("Attributes")]
     public int m_damage = 50;
     //public      float           m_forceToApply              = 20.0f;
-    public int m_fireRate = 60;
+    public float m_fireRate = 60;
     public int m_maxRange = 9999;
     [Space]
     public int m_totalAmmo = 150;
@@ -51,9 +51,10 @@ public class WeaponItem
         public bool m_hasInstantReload = true;
 
         [Space]
+        public bool m_bulletTracer = false;
+        public GameObject m_pfBulletTracer = null;
         public bool m_projectile = false;
         public GameObject m_pfProjectile = null;
-        public GameObject m_bulletTracer = null;
         public bool m_bulletShell = false;
         public GameObject m_pfBulletShell = null;
 
@@ -65,7 +66,7 @@ public class WeaponItem
             m_hasInstantReload = true;
             m_projectile = false;
             m_pfProjectile = null;
-            m_bulletTracer = null;
+            m_pfBulletTracer = null;
             m_bulletShell = false;
             m_pfBulletShell = null;
         }

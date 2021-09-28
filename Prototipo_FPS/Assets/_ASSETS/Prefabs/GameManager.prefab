@@ -52,7 +52,7 @@ MonoBehaviour:
   m_shootLM:
     serializedVersion: 2
     m_Bits: 2049
-  m_infiniteAmmo: 0
+  m_infiniteAmmo: 1
   m_enemiesTParent: {fileID: 0}
   m_spawnEnemies: 1
   m_spawnEnemiesList:

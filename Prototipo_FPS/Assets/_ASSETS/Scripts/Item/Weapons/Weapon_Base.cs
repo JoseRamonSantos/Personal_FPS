@@ -90,8 +90,8 @@ public abstract class Weapon_Base : Item_Base
         }
     }
     public int TotalAmmo { get => m_totalAmmo; set => m_totalAmmo = Mathf.Clamp(value, 0, int.MaxValue); }
-    public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0f, 60f / FireRate); }
-    public int FireRate { get => m_data.m_fireRate; }
+    public float CrntFireRate { get => m_crntFireRate; set => m_crntFireRate = Mathf.Clamp(value, 0f, 1f / FireRate); }
+    public float FireRate { get => m_data.m_fireRate; }
     public float CrntAcc { get => m_crntAcc; set => m_crntAcc = Mathf.Clamp(value, 0f, 100f); }
     public float AccRecoverDelay { get => m_data.m_accuracy.m_accuracyRecoverDelay; }
     public float CrntAccRecoverDelay { get => m_crntAccRecoverDelay; set => m_crntAccRecoverDelay = Mathf.Clamp(value, 0f, AccRecoverDelay); }
@@ -294,8 +294,7 @@ public abstract class Weapon_Base : Item_Base
     protected void ResetFireRate()
     {
         m_canShoot = false;
-        CrntFireRate = 60f / FireRate;
-        Debug.Log("------------- " + CrntFireRate + " // " + 60f / FireRate + " (" + FireRate + ")");
+        CrntFireRate = 1f / FireRate;
     }
     #endregion
 
@@ -352,20 +351,18 @@ public abstract class Weapon_Base : Item_Base
     {
         if (CrntAmmo == 0) { return; }
 
-        m_cmpAnimator.Play("Fire", 0, 0f);
-
         PlaySound(m_data.m_soundClips.m_fireSound, 0.25f);
+
+        if (m_muzzleFlash)
+        {
+            m_muzzleFlash.Play();
+        }
 
         ResetFireRate();
 
         ResetAccRecover();
 
         DecreaseCrntAmmo(1);
-
-        if (m_muzzleFlash)
-        {
-            m_muzzleFlash.Play();
-        }
 
         if (m_data.m_options.m_projectile)
         {
@@ -375,6 +372,8 @@ public abstract class Weapon_Base : Item_Base
         {
             ShootRaycast();
         }
+
+        m_cmpAnimator.Play("Fire", 0, 0f);
 
         AddRecoil();
     }
@@ -450,7 +449,14 @@ public abstract class Weapon_Base : Item_Base
 
         if (m_data.m_options.m_bulletTracer)
         {
-            BulletTracer(destination);
+            if (m_data.m_options.m_pfBulletTracer)
+            {
+                BulletTracer(destination);
+            }
+            else
+            {
+                Debug.LogWarning(transform.name + " MISSING BulletTracer Prefab");
+            }
         }
     }
 
@@ -486,7 +492,7 @@ public abstract class Weapon_Base : Item_Base
 
         Debug.DrawLine(shootPos, m_shootDir, Color.magenta, 10f);
 
-        BulletTracer bulletTracer = Instantiate(m_data.m_options.m_bulletTracer, shootPos, Quaternion.identity).GetComponent<BulletTracer>();
+        BulletTracer bulletTracer = Instantiate(m_data.m_options.m_pfBulletTracer, shootPos, Quaternion.identity).GetComponent<BulletTracer>();
 
         bulletTracer.Init(_destination);
     }
