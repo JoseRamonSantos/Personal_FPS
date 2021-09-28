@@ -62,19 +62,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_cmpMainCamera = Camera.main;
         m_cmpCC = GetComponent<CharacterController>();
+    }
 
+    private void Start()
+    {
+        m_cmpMainCamera = Camera.main;
         m_cameraStandPosY = m_cmpMainCamera.transform.position.y;
+
         m_colliderStandHeight = m_cmpCC.height;
         m_colliderStandPosY = m_cmpCC.center.y;
         m_cameraCrouchPosY = m_cameraStandPosY * 0.75f;
         m_colliderCrouchHeight = m_colliderStandHeight * 0.75f;
         m_colliderCrouchPosY = m_colliderStandPosY - (m_colliderStandHeight - m_colliderCrouchHeight) * 0.5f;
-    }
 
-    private void Start()
-    {
         DefaultMovement();
         m_isMoving = false;
     }

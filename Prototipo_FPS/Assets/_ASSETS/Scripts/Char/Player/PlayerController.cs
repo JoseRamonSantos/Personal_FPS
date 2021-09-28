@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     //Update Loop - Used for calculating frame-based data
@@ -86,7 +87,6 @@ public class PlayerController : MonoBehaviour
         float yAxis = Input.GetAxis("Mouse Y");
 
         m_rawInputRotation = new Vector3(xAxis, yAxis, 0);
-
         m_smoothInputRotation = m_rawInputRotation * m_mouseSensibility;
 
         m_cmpPlayerMovement.UpdateRotationData(m_smoothInputRotation);

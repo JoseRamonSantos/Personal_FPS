@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public abstract class Projectile_Base : MonoBehaviour
 {
+    [SerializeField]
+    protected int m_impactDamage = 2;
     [Space]
     [SerializeField]
     protected float m_initSpeed = 10;
@@ -37,7 +39,6 @@ public abstract class Projectile_Base : MonoBehaviour
     protected float m_crntTime = 0;
 
 
-
     protected virtual void Awake()
     {
         m_cmpRb = GetComponent<Rigidbody>();
@@ -64,7 +65,33 @@ public abstract class Projectile_Base : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        /*if (m_owner)
+        {
+            if (collision.transform.gameObject == m_owner.gameObject) { return; }
+        }*/
+
+        Char_Base target;
+
+        if (collision.transform.TryGetComponent(out target))
+        {
+            if (m_owner)
+            {
+                m_owner.DoDamage(target, m_impactDamage);
+            }
+            else
+            {
+                Debug.LogError(transform.name + "MISSING OWNER");
+                target.ReceiveDamage(m_impactDamage);
+            }
+        }
+
+        StartCollision();
+    }
+
     protected abstract void EndLifetime();
+    protected abstract void StartCollision();
 
     protected void DoDamage(Char_Base _target, int _dmg)
     {
@@ -79,7 +106,7 @@ public abstract class Projectile_Base : MonoBehaviour
         }
     }
 
-    public void Activate(Char_Base _owner, int _maxDamage, int _maxRange, AnimationCurve _dDmgReduction)
+    public virtual void Activate(Char_Base _owner, int _maxDamage, int _maxRange, AnimationCurve _dDmgReduction)
     {
         m_owner = _owner;
         m_maxDamage = _maxDamage;
@@ -110,12 +137,10 @@ public abstract class Projectile_Base : MonoBehaviour
             {
                 if (m_owner)
                 {
-                    Debug.Log("-----> " + 0);
                     m_owner.DoDamage(target, CalculateEsplosionDmg(target));
                 }
                 else
                 {
-                    Debug.Log("-----> " + 1);
                     target.ReceiveDamage(CalculateEsplosionDmg(target));
                 }
             }

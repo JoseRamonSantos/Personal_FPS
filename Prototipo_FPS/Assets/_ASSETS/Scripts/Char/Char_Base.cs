@@ -81,6 +81,8 @@ public class Char_Base : MonoBehaviour
 
     protected virtual void Die()
     {
+        gameObject.layer = LayerMask.NameToLayer("None");
+
         if (m_cmpAnimator)
         {
             m_cmpAnimator.ResetTrigger("Hit");

@@ -52,12 +52,12 @@ MonoBehaviour:
   m_shootLM:
     serializedVersion: 2
     m_Bits: 2049
-  m_infiniteAmmo: 1
+  m_infiniteAmmo: 0
   m_enemiesTParent: {fileID: 0}
   m_spawnEnemies: 1
   m_spawnEnemiesList:
   - {fileID: 793732780558466746, guid: 638daff97baa2334c885461f203c1353, type: 3}
-  m_maxEnemies: 15
+  m_maxEnemies: 20
   m_timeToSpawn: 2
   m_timeToSpawnDeviation: 1
   m_spawnAreaList: []

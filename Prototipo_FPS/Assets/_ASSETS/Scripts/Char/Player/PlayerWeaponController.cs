@@ -59,8 +59,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
         m_weaponsList = GetComponentsInChildren<Weapon_Base>();
 
         if (m_weaponsList.Length > 0)
