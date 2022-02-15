@@ -15,7 +15,7 @@ public class WeaponItem
     [Header("Attributes")]
     public int m_damage = 50;
     //public      float           m_forceToApply              = 20.0f;
-    public float m_fireRate = 60;
+    public float m_fireRate = 5;
     public int m_maxRange = 9999;
     [Space]
     public int m_totalAmmo = 150;

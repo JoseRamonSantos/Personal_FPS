@@ -137,8 +137,8 @@ public class WeaponEditor : EditorWindow
             wItem.m_soundClips.m_bulletShellSound = (AudioClip)EditorGUILayout.ObjectField("Bullet shell sound", wItem.m_soundClips.m_bulletShellSound, typeof(AudioClip), false);
         }
         GUILayout.Space(5);
-        wItem.m_soundClips.m_holsterSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_holsterSound, typeof(AudioClip), false);
-        wItem.m_soundClips.m_drawSound = (AudioClip)EditorGUILayout.ObjectField("Fire sound", wItem.m_soundClips.m_drawSound, typeof(AudioClip), false);
+        wItem.m_soundClips.m_holsterSound = (AudioClip)EditorGUILayout.ObjectField("Holster sound", wItem.m_soundClips.m_holsterSound, typeof(AudioClip), false);
+        wItem.m_soundClips.m_drawSound = (AudioClip)EditorGUILayout.ObjectField("Draw sound", wItem.m_soundClips.m_drawSound, typeof(AudioClip), false);
         GUILayout.Space(5);
         if (wItem.m_options.m_hasChamber && wItem.m_options.m_hasInstantReload)
         {
